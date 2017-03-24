@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://www.tecnico.ie.proj.com"
+            targetNamespace="http://www.tecnico.ie.proj.com"
+            elementFormDefault="qualified">
+  <xsd:complexType name="RequestType">
+    <xsd:sequence>
+      <xsd:element name="Email" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseType">
+    <xsd:sequence>
+      <xsd:element name="Response" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Request" type="tns:RequestType"/>
+  <xsd:element name="Response" type="tns:ResponseType"/>
+</xsd:schema>
