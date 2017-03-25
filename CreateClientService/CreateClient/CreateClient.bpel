@@ -1,0 +1,95 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sat Mar 25 15:07:59 PDT 2017
+  Author:  oracle
+  Type: BPEL 2.0 Process
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="CreateClient"
+         targetNamespace="http://xmlns.oracle.com/CreateClientService/CreateClient/CreateClient"
+         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:client="http://xmlns.oracle.com/CreateClientService/CreateClient/CreateClient"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/CreateClientService/CreateClient/InsertClient"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns3="http://www.example.org"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertClient">
+
+    <import namespace="http://xmlns.oracle.com/CreateClientService/CreateClient/CreateClient" location="CreateClient.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+    <partnerLinks>
+        <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+        <partnerLink name="createclient_client" partnerLinkType="client:CreateClient" myRole="CreateClientProvider" partnerRole="CreateClientRequester"/>
+        <partnerLink name="InsertClient" partnerLinkType="ns1:InsertClient_plt"
+                     partnerRole="InsertClient_role"/>
+    </partnerLinks>
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <variables>
+        <!-- Reference to the message passed as input during initiation -->
+        <variable name="inputVariable" messageType="client:CreateClientRequestMessage"/>
+
+        <!-- Reference to the message that will be sent back to the requester during callback -->
+        <variable name="outputVariable" messageType="client:CreateClientResponseMessage"/>
+        <variable name="Invoke1_insert_InputVariable"
+                  messageType="ns1:ClientCollection_msg"/>
+    </variables>
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <sequence name="main">
+        <!-- Receive input from requestor. (Note: This maps to operation defined in CreateClient.wsdl) -->
+        <receive name="receiveInput" partnerLink="createclient_client" portType="client:CreateClient" operation="process" variable="inputVariable" createInstance="yes"/>
+        <assign name="Assign1">
+            <copy>
+                <from>$inputVariable.payload/ns3:Email</from>
+                <to>$Invoke1_insert_InputVariable.ClientCollection/ns2:Client/ns2:email</to>
+            </copy>
+            <copy>
+                <from>$inputVariable.payload/ns3:Password</from>
+                <to>$Invoke1_insert_InputVariable.ClientCollection/ns2:Client/ns2:password</to>
+            </copy>
+            <copy>
+                <from>$inputVariable.payload/ns3:Address</from>
+                <to>$Invoke1_insert_InputVariable.ClientCollection/ns2:Client/ns2:address</to>
+            </copy>
+            <copy>
+                <from>$inputVariable.payload/ns3:PhoneNumber</from>
+                <to>$Invoke1_insert_InputVariable.ClientCollection/ns2:Client/ns2:phoneNumber</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke1" bpelx:invokeAsDetail="no"
+                partnerLink="InsertClient" portType="ns1:InsertClient_ptt"
+                operation="insert"
+                inputVariable="Invoke1_insert_InputVariable"/>
+        <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+        <invoke name="callbackClient" partnerLink="createclient_client" portType="client:CreateClientCallback" operation="processResponse" inputVariable="outputVariable"/>
+    </sequence>
+</process>

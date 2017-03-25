@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://www.example.org"
+            targetNamespace="http://www.example.org"
+            elementFormDefault="qualified">
+  <xsd:complexType name="RequestRegisterType">
+    <xsd:sequence>
+      <xsd:element name="Email" type="xsd:string"/>
+      <xsd:element name="Address" type="xsd:string"/>
+      <xsd:element name="PhoneNumber" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseRegisterType">
+    <xsd:sequence>
+      <xsd:element name="Result" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RequestRegister" type="tns:RequestRegisterType"/>
+  <xsd:element name="ResponseRegister" type="tns:ResponseRegisterType"/>
+</xsd:schema>
