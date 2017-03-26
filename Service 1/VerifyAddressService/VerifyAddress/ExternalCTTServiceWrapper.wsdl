@@ -1,0 +1,15 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ExternalCTTService"
+     targetNamespace="http://externalctt/"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://externalctt/"
+     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    >
+    <plnk:partnerLinkType name="ExternalCTTVerify">
+        <plnk:role name="ExternalCTTService" portType="tns:ExternalCTTService"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://externalctt/" location="http://soabpm-vm.site:7001/ExternalCTTWS-ExternalCTT-context-root/ExternalCTTServiceSoap12HttpPort?wsdl"/>
+</wsdl:definitions>

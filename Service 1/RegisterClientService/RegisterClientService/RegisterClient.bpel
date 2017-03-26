@@ -1,0 +1,241 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sat Mar 25 16:25:12 PDT 2017
+  Author:  oracle
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="RegisterClient"
+               targetNamespace="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/CheckRegisterService/CheckRegister/CheckRegister"
+         xmlns:ns2="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress"
+         xmlns:ns3="http://passwordgenerator/"
+         xmlns:ns4="http://xmlns.oracle.com/CreateClientService/CreateClient/CreateClient"
+         xmlns:ns5="http://www.tecnico.ie.proj.com"
+         xmlns:ns6="http://www.example.org"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns7="http://sendsmsservice/"
+         xmlns:ns8="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetClientID">
+
+    <import namespace="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient" location="RegisterClient.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="registerclient_client" partnerLinkType="client:RegisterClient" myRole="RegisterClientProvider"/>
+    <partnerLink name="CheckRegister" partnerLinkType="ns1:CheckRegister"
+                 partnerRole="CheckRegisterProvider"/>
+    <partnerLink name="VerifyAddress" partnerLinkType="ns2:VerifyAddress"
+                 partnerRole="VerifyAddressProvider"/>
+    <partnerLink name="PasswordGenerator"
+                 partnerLinkType="ns3:PasswordGenerator"
+                 partnerRole="GeneratePassword"/>
+    <partnerLink name="CreateClient" partnerLinkType="ns4:CreateClient"
+                 partnerRole="CreateClientProvider"
+                 myRole="CreateClientRequester"/>
+    <partnerLink name="SendSMS" partnerLinkType="ns7:SendSMS"
+                 partnerRole="SendSMSService"/>
+    <partnerLink name="GetClientID" partnerLinkType="ns8:GetClientID"
+                 partnerRole="GetClientIDProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:RegisterClientRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:RegisterClientResponseMessage"/>
+    <variable name="Invoke_CheckRegister_process_InputVariable"
+              messageType="ns1:CheckRegisterRequestMessage"/>
+    <variable name="Invoke_CheckRegister_process_OutputVariable"
+              messageType="ns1:CheckRegisterResponseMessage"/>
+    <variable name="Invoke_VerifyAddress_process_InputVariable"
+              messageType="ns2:VerifyAddressRequestMessage"/>
+    <variable name="Invoke_VerifyAddress_process_OutputVariable"
+              messageType="ns2:VerifyAddressResponseMessage"/>
+    <variable name="Invoke1_generatePassword_InputVariable"
+              messageType="ns3:generatePassword"/>
+    <variable name="Invoke1_generatePassword_OutputVariable"
+              messageType="ns3:generatePasswordResponse"/>
+    <variable name="Invoke_CreateClient_process_InputVariable"
+              messageType="ns4:CreateClientRequestMessage"/>
+    <variable name="Invoke_SendSMS_processMessage_InputVariable"
+              messageType="ns7:processMessage"/>
+    <variable name="Invoke_SendSMS_processMessage_OutputVariable"
+              messageType="ns7:processMessageResponse"/>
+    <variable name="Invoke_GetClientID_process_InputVariable"
+              messageType="ns8:GetClientIDRequestMessage"/>
+    <variable name="Invoke_GetClientID_process_OutputVariable"
+              messageType="ns8:GetClientIDResponseMessage"/>
+    <variable name="Invoke_GetClientID_process_InputVariable_1"
+              messageType="ns8:GetClientIDRequestMessage"/>
+    <variable name="Invoke_GetClientID_process_OutputVariable_1"
+              messageType="ns8:GetClientIDResponseMessage"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in RegisterClient.wsdl) -->
+    <receive name="receiveInput" partnerLink="registerclient_client" portType="client:RegisterClient" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Assign1">
+      <copy>
+        <from>$inputVariable.payload/ns6:Email</from>
+        <to>$Invoke_CheckRegister_process_InputVariable.payload/ns5:Email</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke_CheckRegister" bpelx:invokeAsDetail="no"
+            partnerLink="CheckRegister" portType="ns1:CheckRegister"
+            operation="process"
+            inputVariable="Invoke_CheckRegister_process_InputVariable"
+            outputVariable="Invoke_CheckRegister_process_OutputVariable"/>
+    <if name="If1">
+      <documentation>
+        <![CDATA[NOACC]]>
+      </documentation>
+      <condition>$Invoke_CheckRegister_process_OutputVariable.payload/ns5:Response = 'NOACC'</condition>
+      <sequence name="Sequence1">
+        <assign name="Assign3">
+          <copy>
+            <from>$inputVariable.payload/ns6:Address</from>
+            <to>$Invoke_VerifyAddress_process_InputVariable.payload/ns6:Address</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke_VerifyAddress" bpelx:invokeAsDetail="no"
+                partnerLink="VerifyAddress" portType="ns2:VerifyAddress"
+                operation="process"
+                inputVariable="Invoke_VerifyAddress_process_InputVariable"
+                outputVariable="Invoke_VerifyAddress_process_OutputVariable"/>
+        <if name="If2">
+          <documentation>
+            <![CDATA[ADDROK]]>
+          </documentation>
+          <condition>$Invoke_VerifyAddress_process_OutputVariable.payload/ns6:IsOk = true()</condition>
+          <sequence name="Sequence2">
+            <invoke name="Invoke_PasswordGenerator" bpelx:invokeAsDetail="no"
+                    partnerLink="PasswordGenerator"
+                    portType="ns3:GeneratePassword" operation="generatePassword"
+                    inputVariable="Invoke1_generatePassword_InputVariable"
+                    outputVariable="Invoke1_generatePassword_OutputVariable"/>
+            <assign name="Assign5">
+              <copy>
+                <from>$inputVariable.payload/ns6:Email</from>
+                <to>$Invoke_CreateClient_process_InputVariable.payload/ns6:Email</to>
+              </copy>
+              <copy>
+                <from>$inputVariable.payload/ns6:Address</from>
+                <to>$Invoke_CreateClient_process_InputVariable.payload/ns6:Address</to>
+              </copy>
+              <copy>
+                <from>$inputVariable.payload/ns6:PhoneNumber</from>
+                <to>$Invoke_CreateClient_process_InputVariable.payload/ns6:PhoneNumber</to>
+              </copy>
+              <copy>
+                <from>$Invoke1_generatePassword_OutputVariable.parameters/return</from>
+                <to>$Invoke_CreateClient_process_InputVariable.payload/ns6:Password</to>
+              </copy>
+            </assign>
+            <invoke name="Invoke_CreateClient" bpelx:invokeAsDetail="no"
+                    partnerLink="CreateClient" portType="ns4:CreateClient"
+                    operation="process"
+                    inputVariable="Invoke_CreateClient_process_InputVariable"/>
+            <assign name="Assign8">
+              <copy>
+                <from>$inputVariable.payload/ns6:Email</from>
+                <to>$Invoke_GetClientID_process_InputVariable_1.payload/ns6:Email</to>
+              </copy>
+            </assign>
+            <invoke name="Invoke_GetClientID"
+                    partnerLink="GetClientID" portType="ns8:GetClientID"
+                    operation="process" bpelx:invokeAsDetail="no"
+                    inputVariable="Invoke_GetClientID_process_InputVariable_1"
+                    outputVariable="Invoke_GetClientID_process_OutputVariable_1"/>
+            <assign name="Assign7">
+              <copy>
+                <from>$inputVariable.payload/ns6:PhoneNumber</from>
+                <to>$Invoke_SendSMS_processMessage_InputVariable.parameters/arg0</to>
+              </copy>
+              <copy>
+                <from>concat(concat('Welcome to Formo! Your id is: ', $Invoke_GetClientID_process_OutputVariable_1.payload/ns6:Id), concat(' and your password is: ', $Invoke1_generatePassword_OutputVariable.parameters/return))</from>
+                <to>$Invoke_SendSMS_processMessage_InputVariable.parameters/arg1</to>
+              </copy>
+            </assign>
+            <invoke name="Invoke_SendSMS"
+                    partnerLink="SendSMS" portType="ns7:SendSMSService"
+                    operation="processMessage" bpelx:invokeAsDetail="no"
+                    inputVariable="Invoke_SendSMS_processMessage_InputVariable"
+                    outputVariable="Invoke_SendSMS_processMessage_OutputVariable"/>
+            <assign name="Assign6">
+              <copy>
+                <from>concat('', 'ACC CREATED')</from>
+                <to>$outputVariable.payload/ns6:Result</to>
+              </copy>
+            </assign>
+          </sequence>
+          <else>
+            <documentation>
+              <![CDATA[ADDRNOK]]>
+            </documentation>
+            <assign name="Assign4">
+              <copy>
+                <from>concat('', 'ADDR NOT OK')</from>
+                <to>$outputVariable.payload/ns6:Result</to>
+              </copy>
+            </assign>
+          </else>
+        </if>
+      </sequence>
+      <else>
+        <documentation>
+          <![CDATA[ACC]]>
+        </documentation>
+        <assign name="Assign2">
+          <copy>
+            <from>concat('', 'ACC EXISTS')</from>
+            <to>$outputVariable.payload/ns6:Result</to>
+          </copy>
+        </assign>
+      </else>
+    </if>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="registerclient_client" portType="client:RegisterClient" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

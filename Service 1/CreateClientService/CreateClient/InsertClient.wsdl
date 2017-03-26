@@ -1,0 +1,22 @@
+<?binding.jca InsertClient_db.jca?>
+<wsdl:definitions name="InsertClient" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/CreateClientService/CreateClient/InsertClient" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/CreateClientService/CreateClient/InsertClient" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertClient">
+    <plt:partnerLinkType name="InsertClient_plt">
+        <plt:role name="InsertClient_role">
+            <plt:portType name="tns:InsertClient_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertClient" schemaLocation="xsd/InsertClient_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="ClientCollection_msg">
+        <wsdl:part name="ClientCollection" element="top:ClientCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="InsertClient_ptt">
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:ClientCollection_msg"/>
+            <wsdl:output message="tns:ClientCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

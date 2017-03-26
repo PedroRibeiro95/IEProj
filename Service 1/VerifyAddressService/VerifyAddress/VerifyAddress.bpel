@@ -1,0 +1,89 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Fri Mar 24 22:30:47 PDT 2017
+  Author:  oracle
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="VerifyAddress"
+               targetNamespace="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://externalctt/" xmlns:ns2="http://www.example.org">
+
+    <import namespace="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress" location="VerifyAddress.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="verifyaddress_client" partnerLinkType="client:VerifyAddress" myRole="VerifyAddressProvider"/>
+    <partnerLink name="ExternalCTTVerify"
+                 partnerLinkType="ns1:ExternalCTTVerify"
+                 partnerRole="ExternalCTTService"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:VerifyAddressRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:VerifyAddressResponseMessage"/>
+    <variable name="Invoke1_verifiedAddress_InputVariable"
+              messageType="ns1:verifiedAddress"/>
+    <variable name="Invoke1_verifiedAddress_OutputVariable"
+              messageType="ns1:verifiedAddressResponse"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in VerifyAddress.wsdl) -->
+    <receive name="receiveInput" partnerLink="verifyaddress_client" portType="client:VerifyAddress" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Assign1">
+      <copy>
+        <from>$inputVariable.payload/ns2:Address</from>
+        <to>$Invoke1_verifiedAddress_InputVariable.parameters/arg0</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke1" bpelx:invokeAsDetail="no"
+            partnerLink="ExternalCTTVerify" portType="ns1:ExternalCTTService"
+            operation="verifiedAddress"
+            inputVariable="Invoke1_verifiedAddress_InputVariable"
+            outputVariable="Invoke1_verifiedAddress_OutputVariable"/>
+    <assign name="Assign2">
+      <copy>
+        <from>$Invoke1_verifiedAddress_OutputVariable.parameters/return</from>
+        <to>$outputVariable.payload/ns2:IsOk</to>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="verifyaddress_client" portType="client:VerifyAddress" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>
