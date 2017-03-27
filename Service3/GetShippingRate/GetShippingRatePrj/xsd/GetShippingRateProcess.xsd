@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	targetNamespace="http://xmlns.oracle.com/GetShippingRate/GetShippingRatePrj/GetShippingRateProcess"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="process">
+		<complexType>
+			<sequence>
+				<element name="boutiqueAddress" type="string"/>
+    <element name="clientAddress" type="string"/>
+    <element name="shippingTimes" type="integer"/>
+   </sequence>
+		</complexType>
+	</element>
+	<element name="processResponse">
+		<complexType>
+			<sequence>
+				<element name="shippingRate" type="double"/>
+    <element name="carrierName" type="string"/>
+   </sequence>
+		</complexType>
+	</element>
+</schema>

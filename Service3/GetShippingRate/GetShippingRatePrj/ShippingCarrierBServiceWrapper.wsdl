@@ -1,0 +1,15 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ShippingCarrierBService"
+     targetNamespace="http://shippingcarrierbws/"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:tns="http://shippingcarrierbws/"
+     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    >
+    <plnk:partnerLinkType name="GetShippingRateCarrierB">
+        <plnk:role name="ShippingCarrierBService" portType="tns:ShippingCarrierBService"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://shippingcarrierbws/" location="http://soabpm-vm.site:7001/ShippingCarrierB-ShippingCarrierBWS-context-root/ShippingCarrierBServiceSoap12HttpPort?wsdl"/>
+</wsdl:definitions>

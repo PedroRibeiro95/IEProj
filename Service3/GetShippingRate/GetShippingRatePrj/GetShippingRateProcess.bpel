@@ -1,0 +1,163 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sun Mar 26 23:48:38 WEST 2017
+  Author:  oracle
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="GetShippingRateProcess"
+               targetNamespace="http://xmlns.oracle.com/GetShippingRate/GetShippingRatePrj/GetShippingRateProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/GetShippingRate/GetShippingRatePrj/GetShippingRateProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://shippingcarrierbws/"
+         xmlns:ns2="http://shippingcarrieraws/"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap">
+
+    <import namespace="http://xmlns.oracle.com/GetShippingRate/GetShippingRatePrj/GetShippingRateProcess" location="GetShippingRateProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="getshippingrateprocess_client" partnerLinkType="client:GetShippingRateProcess" myRole="GetShippingRateProcessProvider"/>
+    <partnerLink name="GetShippingRateCarrierB"
+                 partnerLinkType="ns1:GetShippingRateCarrierB"
+                 partnerRole="ShippingCarrierBService"/>
+    <partnerLink name="GetShippingRateCarrierA"
+                 partnerLinkType="ns2:GetShippingRateCarrierA"
+                 partnerRole="ShippingCarrierAService"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:GetShippingRateProcessRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:GetShippingRateProcessResponseMessage"/>
+    <variable name="ShippingCarrierRateB_calculateShippingRate_InputVariable"
+              messageType="ns1:calculateShippingRate"/>
+    <variable name="Invoke2_calculateShippingRate_InputVariable"
+              messageType="ns1:calculateShippingRate"/>
+    <variable name="GetShippingRateCarrierB_calculateShippingRate_InputVariable"
+              messageType="ns1:calculateShippingRate"/>
+    <variable name="GetShippingRateCarrierB_calculateShippingRate_OutputVariable"
+              messageType="ns1:calculateShippingRateResponse"/>
+    <variable name="GetShippingRateCarrierA_calculateShippingRate_InputVariable"
+              messageType="ns2:calculateShippingRate"/>
+    <variable name="GetShippingRateCarrierA_calculateShippingRate_OutputVariable"
+              messageType="ns2:calculateShippingRateResponse"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in GetShippingRateProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="getshippingrateprocess_client" portType="client:GetShippingRateProcess" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Assign1">
+      <copy>
+        <from>$inputVariable.payload/client:boutiqueAddress</from>
+        <to>$GetShippingRateCarrierA_calculateShippingRate_InputVariable.parameters/boutiqueAdress</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/client:clientAddress</from>
+        <to>$GetShippingRateCarrierA_calculateShippingRate_InputVariable.parameters/clientAddress</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/client:shippingTimes</from>
+        <to>$GetShippingRateCarrierA_calculateShippingRate_InputVariable.parameters/shippingTimes</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/client:boutiqueAddress</from>
+        <to>$GetShippingRateCarrierB_calculateShippingRate_InputVariable.parameters/boutiqueAdress</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/client:clientAddress</from>
+        <to>$GetShippingRateCarrierB_calculateShippingRate_InputVariable.parameters/clientAddress</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/client:shippingTimes</from>
+        <to>$GetShippingRateCarrierB_calculateShippingRate_InputVariable.parameters/shippingTimes</to>
+      </copy>
+    </assign>
+    <flow name="Flow1">
+      <sequence name="Sequence">
+        <invoke name="GetShippingRateCarrierA" bpelx:invokeAsDetail="no"
+                partnerLink="GetShippingRateCarrierA"
+                portType="ns2:ShippingCarrierAService"
+                operation="calculateShippingRate"
+                inputVariable="GetShippingRateCarrierA_calculateShippingRate_InputVariable"
+                outputVariable="GetShippingRateCarrierA_calculateShippingRate_OutputVariable"/>
+      </sequence>
+      <sequence name="Sequence1">
+        <invoke name="GetShippingRateCarrierB" bpelx:invokeAsDetail="no"
+                partnerLink="GetShippingRateCarrierB"
+                portType="ns1:ShippingCarrierBService"
+                operation="calculateShippingRate"
+                inputVariable="GetShippingRateCarrierB_calculateShippingRate_InputVariable"
+                outputVariable="GetShippingRateCarrierB_calculateShippingRate_OutputVariable"/>
+      </sequence>
+    </flow>
+    <if name="IsCarrierABestRate">
+      <condition>$GetShippingRateCarrierA_calculateShippingRate_OutputVariable.parameters/return &lt;= $GetShippingRateCarrierB_calculateShippingRate_OutputVariable.parameters/return</condition>
+      <assign name="Assign2">
+        <copy>
+          <from>"A"</from>
+          <to>$outputVariable.payload/client:carrierName</to>
+        </copy>
+        <copy>
+          <from>$GetShippingRateCarrierA_calculateShippingRate_OutputVariable.parameters/return</from>
+          <to>$outputVariable.payload/client:shippingRate</to>
+        </copy>
+      </assign>
+      <else>
+        <assign name="Assign3">
+          <copy>
+            <from>"B"</from>
+            <to>$outputVariable.payload/client:carrierName</to>
+          </copy>
+          <copy>
+            <from>$GetShippingRateCarrierB_calculateShippingRate_OutputVariable.parameters/return</from>
+            <to>$outputVariable.payload/client:shippingRate</to>
+          </copy>
+        </assign>
+      </else>
+    </if>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="getshippingrateprocess_client" portType="client:GetShippingRateProcess" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>
