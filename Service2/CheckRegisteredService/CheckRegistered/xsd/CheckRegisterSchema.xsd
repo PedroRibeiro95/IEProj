@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://www.example.org"
+            targetNamespace="http://www.example.org"
+            elementFormDefault="qualified">
+  <xsd:complexType name="RequestCheckType">
+    <xsd:sequence>
+      <xsd:element name="Id" type="xsd:integer"/>
+      <xsd:element name="Password" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseCheckType">
+    <xsd:sequence>
+      <xsd:element name="IsRegistered" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RequestCheck" type="tns:RequestCheckType"/>
+  <xsd:element name="ResponseCheck" type="tns:ResponseCheckType"/>
+</xsd:schema>

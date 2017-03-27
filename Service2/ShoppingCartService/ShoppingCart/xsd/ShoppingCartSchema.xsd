@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://www.example.org"
+            targetNamespace="http://www.example.org"
+            elementFormDefault="qualified">
+  <xsd:complexType name="RequestShoppingType">
+    <xsd:sequence>
+      <xsd:element name="Userid" type="xsd:integer"/>
+      <xsd:element name="Password" type="xsd:string"/>
+      <xsd:element name="Itemid" type="xsd:integer"/>
+      <xsd:element name="Quantity" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseShoppingType">
+    <xsd:sequence>
+      <xsd:element name="Response" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RequestShopping" type="tns:RequestShoppingType"/>
+  <xsd:element name="ResponseShopping" type="tns:ResponseShoppingType"/>
+</xsd:schema>

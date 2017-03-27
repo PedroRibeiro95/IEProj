@@ -1,0 +1,25 @@
+<?binding.jca CheckRegisterDB_db.jca?>
+<wsdl:definitions name="CheckRegisterDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/CheckRegisteredService/CheckRegistered/CheckRegisterDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/CheckRegisteredService/CheckRegistered/CheckRegisterDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckRegisterDB">
+    <plt:partnerLinkType name="CheckRegisterDB_plt">
+        <plt:role name="CheckRegisterDB_role">
+            <plt:portType name="tns:CheckRegisterDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckRegisterDB" schemaLocation="xsd/CheckRegisterDB_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="CheckRegisterDBSelect_inputParameters">
+        <wsdl:part name="CheckRegisterDBSelect_inputParameters" element="top:CheckRegisterDBSelect_id_passInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="ClientCollection_msg">
+        <wsdl:part name="ClientCollection" element="top:ClientCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="CheckRegisterDB_ptt">
+        <wsdl:operation name="CheckRegisterDBSelect">
+            <wsdl:input message="tns:CheckRegisterDBSelect_inputParameters"/>
+            <wsdl:output message="tns:ClientCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

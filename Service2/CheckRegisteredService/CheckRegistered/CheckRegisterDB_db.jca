@@ -1,0 +1,14 @@
+<adapter-config name="CheckRegisterDB" adapter="Database Adapter" wsdlLocation="CheckRegisterDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="ConnectionDB" adapterRef=""/>
+  <endpoint-interaction portType="CheckRegisterDB_ptt" operation="CheckRegisterDBSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="CheckRegisterDB.Client"/>
+      <property name="QueryName" value="CheckRegisterDBSelect"/>
+      <property name="MappingsMetaDataURL" value="CheckRegisterDB-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>
