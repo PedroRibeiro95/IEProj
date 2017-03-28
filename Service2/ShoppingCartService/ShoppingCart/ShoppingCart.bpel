@@ -100,9 +100,9 @@
             outputVariable="Invoke_CheckRegistered_process_OutputVariable"/>
     <if name="If1">
       <documentation>
-        <![CDATA[REGISTERED]]>
+        <![CDATA[Registered]]>
       </documentation>
-      <condition>$Invoke_CheckRegistered_process_OutputVariable.payload/ns3:IsRegistered = true()</condition>
+      <condition>$Invoke_CheckRegistered_process_OutputVariable.payload/ns3:IsRegistered = "true"</condition>
       <sequence name="Sequence1">
         <assign name="Assign2">
           <copy>
@@ -125,18 +125,18 @@
                 outputVariable="Invoke_InsertItem_process_OutputVariable"/>
         <assign name="Assign4">
           <copy>
-            <from>"INSERTED"</from>
+            <from>"Item inserted in cart"</from>
             <to>$outputVariable.payload/ns3:Response</to>
           </copy>
         </assign>
       </sequence>
       <else>
         <documentation>
-          <![CDATA[NREGISTERED]]>
+          <![CDATA[Not registered]]>
         </documentation>
         <assign name="Assign3">
           <copy>
-            <from>"NREGISTERED"</from>
+            <from>"Account not registered"</from>
             <to>$outputVariable.payload/ns3:Response</to>
           </copy>
         </assign>

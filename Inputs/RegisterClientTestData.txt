@@ -1,0 +1,23 @@
+# Este ficheiro contem dados a serem usados para testar as features
+# do serviço RegisterClientService:
+
+# Criar uma conta com os seguintes dados
+Email: pedro.ribeiro@ist.pt
+Address: Lisboa, Sintra, Agualva, Francisco Lucas Pires, 5, 2735-088 Lisboa
+Shipping Times: 351925678358
+
+Return: Account created for pedro@ribeiro@ist.pt" e manda o SMS de confirmação
+
+# Tentar criar uma conta com um email que ja existe
+Email: pedro.ribeiro@ist.pt
+Address: Lisboa, Sintra, Agualva, Francisco Lucas Pires, 5, 2735-088 Lisboa
+Shipping Times: 351925678358
+
+Return: Account for pedro@ribeiro@ist.pt already exists
+
+# Tentar criar uma conta com uma morada mal formulada
+Email: pedro.simoes@ist.pt
+Address: Lisboa
+Shipping Times: 351925678358
+
+Return: Lança a excepção "FailVerifyingAddressException"

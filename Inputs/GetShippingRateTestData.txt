@@ -1,0 +1,16 @@
+# Este ficheiro contem dados a serem usados para testar as features
+# do serviço GetShippingRate 
+
+# Solicitar uma taxa de transporte de Milão para Sintra
+Boutique Address:Milão
+Client Address:Lisboa,Sintra,Agualva,Francisco+Lucas+Pires,5,2735-088+Lisboa 
+Shipping Times: 2
+
+Return: taxa gerada aleatoriamente e o transportador (A ou B) que tinha a menor taxa
+
+# Solicitar uma taxa de transporte de Milão para Sintra
+Boutique Address:Milão
+Client Address:Coimbra,Sintra,Agualva,Francisco+Lucas+Pires,5,2735-088+Lisboa 
+Shipping Times: 2
+
+Return: KO, o que significa que o endereço do cliente está errado.

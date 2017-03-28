@@ -1,0 +1,18 @@
+# Este ficheiro contem dados a serem usados para testar as features
+# do serviço ShoppingCartService:
+
+# Criar uma conta com os seguintes dados
+Userid: 25
+Password: VQT83NN6
+Itemid: 2
+Quantity: 100
+
+Return: Item inserted in cart
+
+# Criar uma conta com os seguintes dados
+Userid: 24
+Password: VQT83NN6
+Itemid: 2
+Quantity: 100
+
+Return: Account not registered

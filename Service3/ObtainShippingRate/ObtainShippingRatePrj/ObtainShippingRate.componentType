@@ -9,12 +9,12 @@
     <interface.wsdl interface="http://xmlns.oracle.com/ObtainShippingRate/ObtainShippingRatePrj/ObtainShippingRate#wsdl.interface(ObtainShippingRate)"
                     callbackInterface="http://xmlns.oracle.com/ObtainShippingRate/ObtainShippingRatePrj/ObtainShippingRate#wsdl.interface(ObtainShippingRateCallback)"/>
   </service>
-  <reference name="VerifyClientAddress"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/VerifyAddress!1.0/VerifyAddress.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress#wsdl.interface(VerifyAddress)"/>
-  </reference>
   <reference name="GetShippingRate"
              ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/GetShippingRatePrj!1.0/GetShippingRateProcess.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/GetShippingRate/GetShippingRatePrj/GetShippingRateProcess#wsdl.interface(GetShippingRateProcess)"/>
+  </reference>
+  <reference name="VerifyAddress"
+             ui:wsdlLocation="VerifyAddressCTTServiceWrapper.wsdl">
+    <interface.wsdl interface="http://verifyaddress/#wsdl.interface(VerifyAddressCTT)"/>
   </reference>
 </componentType>

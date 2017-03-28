@@ -1,0 +1,25 @@
+<?binding.jca GetClientIDDB_db.jca?>
+<wsdl:definitions name="GetClientIDDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetClientIDService/GetClientID/GetClientIDDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/GetClientIDService/GetClientID/GetClientIDDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetClientIDDB">
+    <plt:partnerLinkType name="GetClientIDDB_plt">
+        <plt:role name="GetClientIDDB_role">
+            <plt:portType name="tns:GetClientIDDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetClientIDDB" schemaLocation="xsd/GetClientIDDB_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="selectByPrimaryKey_inputParameters">
+        <wsdl:part name="selectByPrimaryKey_inputParameters" element="top:ClientPrimaryKey"/>
+    </wsdl:message>
+    <wsdl:message name="ClientCollection_msg">
+        <wsdl:part name="ClientCollection" element="top:ClientCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetClientIDDB_ptt">
+        <wsdl:operation name="selectByPrimaryKey">
+            <wsdl:input message="tns:selectByPrimaryKey_inputParameters"/>
+            <wsdl:output message="tns:ClientCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

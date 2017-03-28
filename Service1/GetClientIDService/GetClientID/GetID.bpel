@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Mar 27 14:52:10 PDT 2017
+  Author:  oracle
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="GetID"
+               targetNamespace="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetID"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetID"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/GetClientIDService/GetClientID/GetClientIDDB"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetClientIDDB"
+         xmlns:ns2="http://www.example.org"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <import namespace="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetID" location="GetID.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="getid_client" partnerLinkType="client:GetID" myRole="GetIDProvider"/>
+    <partnerLink name="GetClientIDDB" partnerLinkType="ns1:GetClientIDDB_plt"
+                 partnerRole="GetClientIDDB_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:GetIDRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:GetIDResponseMessage"/>
+    <variable name="Invoke_GetClientIDDB_selectByPrimaryKey_InputVariable"
+              messageType="ns1:selectByPrimaryKey_inputParameters"/>
+    <variable name="Invoke_GetClientIDDB_selectByPrimaryKey_OutputVariable"
+              messageType="ns1:ClientCollection_msg"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in GetID.wsdl) -->
+    <receive name="receiveInput" partnerLink="getid_client" portType="client:GetID" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Assign1">
+      <copy>
+        <from>$inputVariable.payload/ns2:Email</from>
+        <to>$Invoke_GetClientIDDB_selectByPrimaryKey_InputVariable.selectByPrimaryKey_inputParameters/ns3:email</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke_GetClientIDDB"
+            partnerLink="GetClientIDDB" portType="ns1:GetClientIDDB_ptt"
+            operation="selectByPrimaryKey" bpelx:invokeAsDetail="no"
+            inputVariable="Invoke_GetClientIDDB_selectByPrimaryKey_InputVariable"
+            outputVariable="Invoke_GetClientIDDB_selectByPrimaryKey_OutputVariable"/>
+    <assign name="Assign2">
+      <copy>
+        <from>$Invoke_GetClientIDDB_selectByPrimaryKey_OutputVariable.ClientCollection/ns3:Client/ns3:id</from>
+        <to>$outputVariable.payload/ns2:Id</to>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="getid_client" portType="client:GetID" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

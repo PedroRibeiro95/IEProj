@@ -13,26 +13,28 @@
   <import namespace="http://xmlns.oracle.com/CheckRegisterService/CheckRegister/CheckRegister"
           location="http://soabpm-vm.site:7001/soa-infra/services/default/CheckRegister/CheckRegister.wsdl"
           importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress"
-          location="http://soabpm-vm.site:7001/soa-infra/services/default/VerifyAddress/VerifyAddress.wsdl"
-          importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/CreateClientService/CreateClient/CreateClient"
           location="http://soabpm-vm.site:7001/soa-infra/services/default/CreateClient/CreateClient.wsdl"
           importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient"
-          location="RegisterClient.wsdl" importType="wsdl"/>
   <import namespace="http://passwordgenerator/"
           location="http://soabpm-vm.site:7001/PasswordGeneratorService-PasswordGenerator-context-root/GeneratePasswordSoap12HttpPort?wsdl"
           importType="wsdl"/>
-  <import namespace="http://passwordgenerator/"
-          location="GeneratePasswordServiceWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://sendsmsservice/"
           location="http://soabpm-vm.site:7001/SMSSender-SendSMSService-context-root/SendSMSServiceSoap12HttpPort?wsdl"
           importType="wsdl"/>
+  <import namespace="http://verifyaddress/"
+          location="http://soabpm-vm.site:7001/VerifyAddressService-VerifyAddress-context-root/VerifyAddressCTTSoap12HttpPort?wsdl"
+          importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient"
+          location="RegisterClient.wsdl" importType="wsdl"/>
+  <import namespace="http://verifyaddress/"
+          location="VerifyAddressCTTServiceWrapper.wsdl" importType="wsdl"/>
+  <import namespace="http://passwordgenerator/"
+          location="GeneratePasswordServiceWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://sendsmsservice/"
           location="SendSMSServiceWrapper.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetClientID"
-          location="http://soabpm-vm.site:7001/soa-infra/services/default/GetClientID/GetClientID.wsdl"
+  <import namespace="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetID"
+          location="http://soabpm-vm.site:7001/soa-infra/services/default/GetClientID!1.1/GetID.wsdl"
           importType="wsdl"/>
   <service name="registerclient_client_ep"
            ui:wsdlLocation="RegisterClient.wsdl">
@@ -51,16 +53,6 @@
     <interface.wsdl interface="http://xmlns.oracle.com/CheckRegisterService/CheckRegister/CheckRegister#wsdl.interface(CheckRegister)"/>
     <binding.ws port="http://xmlns.oracle.com/CheckRegisterService/CheckRegister/CheckRegister#wsdl.endpoint(checkregister_client_ep/CheckRegister_pt)"
                 location="http://soabpm-vm.site:7001/soa-infra/services/default/CheckRegister/checkregister_client_ep?WSDL"
-                soapVersion="1.1">
-      <property name="weblogic.wsee.wsat.transaction.flowOption"
-                type="xs:string" many="false">WSDLDriven</property>
-    </binding.ws>
-  </reference>
-  <reference name="VerifyAddress"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/VerifyAddress/VerifyAddress.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress#wsdl.interface(VerifyAddress)"/>
-    <binding.ws port="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress#wsdl.endpoint(verifyaddress_client_ep/VerifyAddress_pt)"
-                location="http://soabpm-vm.site:7001/soa-infra/services/default/VerifyAddress/verifyaddress_client_ep?WSDL"
                 soapVersion="1.1">
       <property name="weblogic.wsee.wsat.transaction.flowOption"
                 type="xs:string" many="false">WSDLDriven</property>
@@ -100,11 +92,21 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
+  <reference name="VerifyAddress"
+             ui:wsdlLocation="http://soabpm-vm.site:7001/VerifyAddressService-VerifyAddress-context-root/VerifyAddressCTTSoap12HttpPort?wsdl">
+    <interface.wsdl interface="http://verifyaddress/#wsdl.interface(VerifyAddressCTT)"/>
+    <binding.ws port="http://verifyaddress/#wsdl.endpoint(VerifyAddressCTTService/VerifyAddressCTTSoap12HttpPort)"
+                location="http://soabpm-vm.site:7001/VerifyAddressService-VerifyAddress-context-root/VerifyAddressCTTSoap12HttpPort?wsdl"
+                soapVersion="1.2">
+      <property name="weblogic.wsee.wsat.transaction.flowOption"
+                type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
+  </reference>
   <reference name="GetClientID"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/GetClientID/GetClientID.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetClientID#wsdl.interface(GetClientID)"/>
-    <binding.ws port="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetClientID#wsdl.endpoint(getclientid_client_ep/GetClientID_pt)"
-                location="http://soabpm-vm.site:7001/soa-infra/services/default/GetClientID/getclientid_client_ep?WSDL"
+             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/GetClientID!1.1/GetID.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetID#wsdl.interface(GetID)"/>
+    <binding.ws port="http://xmlns.oracle.com/GetClientIDService/GetClientID/GetID#wsdl.endpoint(getid_client_ep/GetID_pt)"
+                location="http://soabpm-vm.site:7001/soa-infra/services/default/GetClientID!1.1/getid_client_ep?WSDL"
                 soapVersion="1.1">
       <property name="weblogic.wsee.wsat.transaction.flowOption"
                 type="xs:string" many="false">WSDLDriven</property>

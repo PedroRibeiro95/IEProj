@@ -12,12 +12,14 @@
            xmlns:ui="http://xmlns.oracle.com/soa/designer/">
   <import namespace="http://xmlns.oracle.com/ObtainShippingRate/ObtainShippingRatePrj/ObtainShippingRate"
           location="ObtainShippingRate.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress"
-          location="http://soabpm-vm.site:7001/soa-infra/services/default/VerifyAddress!1.0/VerifyAddress.wsdl"
-          importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/GetShippingRate/GetShippingRatePrj/GetShippingRateProcess"
           location="http://soabpm-vm.site:7001/soa-infra/services/default/GetShippingRatePrj!1.0/GetShippingRateProcess.wsdl"
           importType="wsdl"/>
+  <import namespace="http://verifyaddress/"
+          location="http://soabpm-vm.site:7001/VerifyAddressService-VerifyAddress-context-root/VerifyAddressCTTSoap12HttpPort?wsdl"
+          importType="wsdl"/>
+  <import namespace="http://verifyaddress/"
+          location="VerifyAddressCTTServiceWrapper.wsdl" importType="wsdl"/>
   <service name="obtainshippingrate_client_ep"
            ui:wsdlLocation="ObtainShippingRate.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ObtainShippingRate/ObtainShippingRatePrj/ObtainShippingRate#wsdl.interface(ObtainShippingRate)"
@@ -33,16 +35,6 @@
     <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string"
               many="false">async.persist</property>
   </component>
-  <reference name="VerifyClientAddress"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/VerifyAddress!1.0/VerifyAddress.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress#wsdl.interface(VerifyAddress)"/>
-    <binding.ws port="http://xmlns.oracle.com/VerifyAddressService/VerifyAddress/VerifyAddress#wsdl.endpoint(verifyaddress_client_ep/VerifyAddress_pt)"
-                location="http://soabpm-vm.site:7001/soa-infra/services/default/VerifyAddress!1.0/verifyaddress_client_ep?WSDL"
-                soapVersion="1.1">
-      <property name="weblogic.wsee.wsat.transaction.flowOption"
-                type="xs:string" many="false">WSDLDriven</property>
-    </binding.ws>
-  </reference>
   <reference name="GetShippingRate"
              ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/GetShippingRatePrj!1.0/GetShippingRateProcess.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/GetShippingRate/GetShippingRatePrj/GetShippingRateProcess#wsdl.interface(GetShippingRateProcess)"/>
@@ -53,16 +45,26 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
+  <reference name="VerifyAddress"
+             ui:wsdlLocation="http://soabpm-vm.site:7001/VerifyAddressService-VerifyAddress-context-root/VerifyAddressCTTSoap12HttpPort?wsdl">
+    <interface.wsdl interface="http://verifyaddress/#wsdl.interface(VerifyAddressCTT)"/>
+    <binding.ws port="http://verifyaddress/#wsdl.endpoint(VerifyAddressCTTService/VerifyAddressCTTSoap12HttpPort)"
+                location="http://soabpm-vm.site:7001/VerifyAddressService-VerifyAddress-context-root/VerifyAddressCTTSoap12HttpPort?wsdl"
+                soapVersion="1.2">
+      <property name="weblogic.wsee.wsat.transaction.flowOption"
+                type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
+  </reference>
   <wire>
     <source.uri>obtainshippingrate_client_ep</source.uri>
     <target.uri>ObtainShippingRate/obtainshippingrate_client</target.uri>
   </wire>
   <wire>
-    <source.uri>ObtainShippingRate/VerifyClientAddress</source.uri>
-    <target.uri>VerifyClientAddress</target.uri>
-  </wire>
-  <wire>
     <source.uri>ObtainShippingRate/GetShippingRate</source.uri>
     <target.uri>GetShippingRate</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ObtainShippingRate/VerifyAddress</source.uri>
+    <target.uri>VerifyAddress</target.uri>
   </wire>
 </composite>

@@ -6,6 +6,7 @@ CREATE sequence cart_id start with 1 increment by 1;
 CREATE TABLE client ( 
 id NUMBER(10),
 userid NUMBER(10),
-item VARCHAR(255), 
+itemid NUMBER(10),
+quantity NUMBER(10), 
 PRIMARY KEY(id) 
 );
