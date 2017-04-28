@@ -31,4 +31,8 @@
     <interface.wsdl interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)"
                     callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
   </reference>
+  <reference name="Services.Externals.DeleteFromCartDB.reference"
+             ui:wsdlLocation="DeleteFromCartDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseProcess/AddMerchandise/DeleteFromCartDB#wsdl.interface(DeleteFromCartDB_ptt)"/>
+  </reference>
 </componentType>

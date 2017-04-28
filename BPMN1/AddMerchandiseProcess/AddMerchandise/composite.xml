@@ -21,6 +21,8 @@
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ReviewQuantity/ReviewQuantity_DecisionService_1"
           location="ReviewQuantity_DecisionService_1.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseProcess/AddMerchandise/DeleteFromCartDB"
+          location="DeleteFromCartDB.wsdl" importType="wsdl"/>
   <property name="productVersion" type="xs:string" many="false">11.1.1.7.0</property>
   <component name="AddMerchandiseProcess">
     <implementation.bpmn src="processes/AddMerchandiseProcess.bpmn"/>
@@ -60,6 +62,17 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
+  <reference name="DeleteFromCartDB" ui:wsdlLocation="DeleteFromCartDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseProcess/AddMerchandise/DeleteFromCartDB#wsdl.interface(DeleteFromCartDB_ptt)"/>
+    <binding.jca config="DeleteFromCartDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
   <wire>
     <source.uri>AddMerchandiseProcess/HumanTasks.InitialInformation.reference</source.uri>
     <target.uri>InitialInformation/TaskService</target.uri>
@@ -83,5 +96,9 @@
   <wire>
     <source.uri>AddMerchandiseProcess/HumanTasks.QuantityReview.reference</source.uri>
     <target.uri>QuantityReview/TaskService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseProcess/Services.Externals.DeleteFromCartDB.reference</source.uri>
+    <target.uri>DeleteFromCartDB</target.uri>
   </wire>
 </composite>
