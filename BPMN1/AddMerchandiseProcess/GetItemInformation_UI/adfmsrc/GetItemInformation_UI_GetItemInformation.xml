@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="GetItemInformation_UI_GetItemInformation"
+          BeanClass="GetItemInformation_UI_GetItemInformation"
+          isJavaBased="false">
+  <MethodAccessor IsCollection="false"
+                  Type="GetItemInformation_UI_GetItemInformation.getTaskDetails"
+                  BeanClass="GetItemInformation_UI_GetItemInformation.getTaskDetails"
+                  id="getTaskDetails" ReturnNodeName="Return">
+    <ParameterInfo id="bpmWorklistContext" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="bpmWorklistTaskId" Type="java.lang.String"
+                   isStructured="false"/>
+    <ParameterInfo id="bpmWorklistTaskVersion" Type="java.lang.String"
+                   isStructured="false"/>
+  </MethodAccessor>
+</JavaBean>

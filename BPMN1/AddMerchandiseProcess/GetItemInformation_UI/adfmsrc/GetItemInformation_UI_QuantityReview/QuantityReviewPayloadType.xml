@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="QuantityReviewPayloadType"
+          Package="GetItemInformation_UI_QuantityReview"
+          BeanClass="GetItemInformation_UI_QuantityReview.QuantityReviewPayloadType"
+          isJavaBased="false">
+  <AccessorAttribute id="ItemInformationObject" IsCollection="true"
+                     BeanClass="GetItemInformation_UI_QuantityReview.ItemInformationObjectType"
+                     CollectionBeanClass="GetItemInformation_UI_QuantityReview.ItemInformationObjectType_ItemInformationObject_Operations">
+    <Properties>
+      <Property Name="nextSiblingNamespace"
+                Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ReviewObject"/>
+      <Property Name="nextSibling" Value="ReviewObject"/>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Item Information Object"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="ItemInformationObject"/>
+      <Property Name="targetNamespace"
+                Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="ReviewObject" IsCollection="true"
+                     BeanClass="GetItemInformation_UI_QuantityReview.ReviewObjectType"
+                     CollectionBeanClass="GetItemInformation_UI_QuantityReview.ReviewObjectType_ReviewObject_Operations">
+    <Properties>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Review Object"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="ReviewObject"/>
+      <Property Name="targetNamespace"
+                Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ReviewObject"/>
+    </Properties>
+  </AccessorAttribute>
+</JavaBean>

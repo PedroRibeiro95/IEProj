@@ -18,6 +18,8 @@
   <import namespace="http://xmlns.oracle.com/InsertItemService/InsertItem/InsertItem"
           location="http://soabpm-vm.site:7001/soa-infra/services/default/InsertItem/InsertItem.wsdl"
           importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB"
+          location="CheckItemDB.wsdl" importType="wsdl"/>
   <service name="shoppingcart_client_ep" ui:wsdlLocation="ShoppingCart.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.interface(ShoppingCart)"/>
     <binding.ws port="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.endpoint(shoppingcart_client_ep/ShoppingCart_pt)"/>
@@ -49,6 +51,17 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
+  <reference name="CheckItemDB" ui:wsdlLocation="CheckItemDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB#wsdl.interface(CheckItemDB_ptt)"/>
+    <binding.jca config="CheckItemDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
   <wire>
     <source.uri>shoppingcart_client_ep</source.uri>
     <target.uri>ShoppingCart/shoppingcart_client</target.uri>
@@ -60,5 +73,9 @@
   <wire>
     <source.uri>ShoppingCart/InsertItem</source.uri>
     <target.uri>InsertItem</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ShoppingCart/CheckItemDB</source.uri>
+    <target.uri>CheckItemDB</target.uri>
   </wire>
 </composite>

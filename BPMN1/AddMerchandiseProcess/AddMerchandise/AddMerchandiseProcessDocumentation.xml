@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="11.1.1.7.0.0.8" fileRevision="20120217"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+    <component name="AddMerchandiseProcess">
+        <topicDocumentations>
+            <topicDocumentation name="AddMerchandiseProcess">
+                <descriptions>
+                    <description locale="en">AddMerchandiseProcess</description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19181834415730">
+                <labels>
+                    <label locale="en">Initial Information</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19181862304319">
+                <labels>
+                    <label locale="en">Call RegisterClientService</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT1918186945344">
+                <labels>
+                    <label locale="en">Get Item Information</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19181887883966">
+                <labels>
+                    <label locale="en">Call ShoppingCartService</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19181892468818">
+                <labels>
+                    <label locale="en">Review Quantity</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19181818823044">
+                <labels>
+                    <label locale="en">Start</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19181818823018">
+                <labels>
+                    <label locale="en">End</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19181964121623">
+                <labels>
+                    <label locale="en">Subprocess</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT1918196426423">
+                <labels>
+                    <label locale="en">Start1</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19181964264358">
+                <labels>
+                    <label locale="en">End1</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19181971164920">
+                <labels>
+                    <label locale="en">Review Quantity</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf11"/>
+            <topicDocumentation name="sf14"/>
+            <topicDocumentation name="sf8"/>
+            <topicDocumentation name="sf12"/>
+            <topicDocumentation name="sf6"/>
+            <topicDocumentation name="sf7"/>
+            <topicDocumentation name="sf9"/>
+            <topicDocumentation name="sf10"/>
+            <topicDocumentation name="sf13"/>
+        </topicDocumentations>
+    </component>
+</processDocumentation>

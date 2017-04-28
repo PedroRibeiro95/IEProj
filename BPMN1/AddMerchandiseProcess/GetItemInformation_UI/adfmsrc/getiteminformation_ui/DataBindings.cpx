@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="getiteminformation_ui" ClientType="Generic">
+  <pageMap>
+    <page path="/taskDetails1.jspx"
+          usageId="getiteminformation_ui_taskDetails1PageDef"/>
+    <page path="/taskDetails2.jspx"
+          usageId="getiteminformation_ui_taskDetails2PageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="getiteminformation_ui_taskDetails1PageDef"
+          path="getiteminformation_ui.pageDefs.taskDetails1PageDef"/>
+    <page id="getiteminformation_ui_taskDetails2PageDef"
+          path="getiteminformation_ui.pageDefs.taskDetails2PageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="GetItemInformation_UI_QuantityReview"
+        path="getiteminformation_ui.GetItemInformation_UI_QuantityReview"/>
+    <dc id="GetItemInformation_UI_GetItemInformation"
+        path="getiteminformation_ui.GetItemInformation_UI_GetItemInformation"/>
+  </dataControlUsages>
+</Application>

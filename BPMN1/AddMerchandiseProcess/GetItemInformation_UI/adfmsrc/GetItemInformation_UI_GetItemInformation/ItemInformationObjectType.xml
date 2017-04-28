@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="ItemInformationObjectType"
+          Package="GetItemInformation_UI_GetItemInformation"
+          BeanClass="GetItemInformation_UI_GetItemInformation.ItemInformationObjectType"
+          isJavaBased="false">
+  <Attribute Name="userid" Type="java.lang.Integer">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minInclusive" Value="-2147483648"/>
+        <Property Name="originalName" Value="userid"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+        <Property Name="nextSibling" Value="password"/>
+        <Property Name="fractionDigits" Value="0"/>
+        <Property Name="nillable" Value="true"/>
+        <Property Name="LABEL" Value="Userid"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="maxInclusive" Value="2147483647"/>
+        <Property Name="type" Value="java.lang.Integer"/>
+        <Property Name="targetNamespace"
+                  Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+        <Property Name="minOccurs" Value="1"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="password" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+        <Property Name="nextSibling" Value="itemid"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Password"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="true"/>
+        <Property Name="originalName" Value="password"/>
+        <Property Name="targetNamespace"
+                  Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="itemid" Type="java.lang.Integer">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minInclusive" Value="-2147483648"/>
+        <Property Name="originalName" Value="itemid"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nextSiblingNamespace"
+                  Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+        <Property Name="nextSibling" Value="quantity"/>
+        <Property Name="fractionDigits" Value="0"/>
+        <Property Name="nillable" Value="true"/>
+        <Property Name="LABEL" Value="Itemid"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="maxInclusive" Value="2147483647"/>
+        <Property Name="type" Value="java.lang.Integer"/>
+        <Property Name="targetNamespace"
+                  Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+        <Property Name="minOccurs" Value="1"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="quantity" Type="java.lang.Integer">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="fractionDigits" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="maxInclusive" Value="2147483647"/>
+        <Property Name="LABEL" Value="Quantity"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="true"/>
+        <Property Name="originalName" Value="quantity"/>
+        <Property Name="minInclusive" Value="-2147483648"/>
+        <Property Name="targetNamespace"
+                  Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseType/ItemInformationObject"/>
+        <Property Name="type" Value="java.lang.Integer"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+</JavaBean>

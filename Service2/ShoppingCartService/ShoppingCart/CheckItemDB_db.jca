@@ -1,0 +1,13 @@
+<adapter-config name="CheckItemDB" adapter="Database Adapter" wsdlLocation="CheckItemDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="Connection_DB" adapterRef=""/>
+  <endpoint-interaction portType="CheckItemDB_ptt" operation="selectByPrimaryKey">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="CheckItemDB.Stock"/>
+      <property name="QueryName" value="readObject"/>
+      <property name="MappingsMetaDataURL" value="CheckItemDB-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

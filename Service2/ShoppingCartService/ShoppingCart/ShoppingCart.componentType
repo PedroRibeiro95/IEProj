@@ -15,4 +15,7 @@
              ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/InsertItem/InsertItem.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/InsertItemService/InsertItem/InsertItem#wsdl.interface(InsertItem)"/>
   </reference>
+  <reference name="CheckItemDB" ui:wsdlLocation="CheckItemDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB#wsdl.interface(CheckItemDB_ptt)"/>
+  </reference>
 </componentType>
