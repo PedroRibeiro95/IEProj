@@ -11,11 +11,10 @@
              ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/CheckRegistered/CheckRegister.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/CheckRegisteredService/CheckRegistered/CheckRegister#wsdl.interface(CheckRegister)"/>
   </reference>
-  <reference name="InsertItem"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/InsertItem/InsertItem.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/InsertItemService/InsertItem/InsertItem#wsdl.interface(InsertItem)"/>
-  </reference>
   <reference name="CheckItemDB" ui:wsdlLocation="CheckItemDB.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB#wsdl.interface(CheckItemDB_ptt)"/>
+  </reference>
+  <reference name="InsertItemDB" ui:wsdlLocation="InsertItemDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB#wsdl.interface(InsertItemDB_ptt)"/>
   </reference>
 </componentType>

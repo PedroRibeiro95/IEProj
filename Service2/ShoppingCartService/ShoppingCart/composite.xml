@@ -15,11 +15,10 @@
   <import namespace="http://xmlns.oracle.com/CheckRegisteredService/CheckRegistered/CheckRegister"
           location="http://soabpm-vm.site:7001/soa-infra/services/default/CheckRegistered/CheckRegister.wsdl"
           importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/InsertItemService/InsertItem/InsertItem"
-          location="http://soabpm-vm.site:7001/soa-infra/services/default/InsertItem/InsertItem.wsdl"
-          importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB"
           location="CheckItemDB.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB"
+          location="InsertItemDB.wsdl" importType="wsdl"/>
   <service name="shoppingcart_client_ep" ui:wsdlLocation="ShoppingCart.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.interface(ShoppingCart)"/>
     <binding.ws port="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.endpoint(shoppingcart_client_ep/ShoppingCart_pt)"/>
@@ -41,19 +40,20 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
-  <reference name="InsertItem"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/InsertItem/InsertItem.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/InsertItemService/InsertItem/InsertItem#wsdl.interface(InsertItem)"/>
-    <binding.ws port="http://xmlns.oracle.com/InsertItemService/InsertItem/InsertItem#wsdl.endpoint(insertitem_client_ep/InsertItem_pt)"
-                location="http://soabpm-vm.site:7001/soa-infra/services/default/InsertItem/insertitem_client_ep?WSDL"
-                soapVersion="1.1">
-      <property name="weblogic.wsee.wsat.transaction.flowOption"
-                type="xs:string" many="false">WSDLDriven</property>
-    </binding.ws>
-  </reference>
   <reference name="CheckItemDB" ui:wsdlLocation="CheckItemDB.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB#wsdl.interface(CheckItemDB_ptt)"/>
     <binding.jca config="CheckItemDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
+  <reference name="InsertItemDB" ui:wsdlLocation="InsertItemDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB#wsdl.interface(InsertItemDB_ptt)"/>
+    <binding.jca config="InsertItemDB_db.jca"/>
     <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
     <property name="jca.retry.interval" type="xs:int" many="false"
               override="may">1</property>
@@ -71,11 +71,11 @@
     <target.uri>CheckRegistered</target.uri>
   </wire>
   <wire>
-    <source.uri>ShoppingCart/InsertItem</source.uri>
-    <target.uri>InsertItem</target.uri>
-  </wire>
-  <wire>
     <source.uri>ShoppingCart/CheckItemDB</source.uri>
     <target.uri>CheckItemDB</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ShoppingCart/InsertItemDB</source.uri>
+    <target.uri>InsertItemDB</target.uri>
   </wire>
 </composite>

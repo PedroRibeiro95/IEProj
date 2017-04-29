@@ -1,0 +1,14 @@
+<adapter-config name="InsertItemDB" adapter="Database Adapter" wsdlLocation="InsertItemDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="Connection_DB" adapterRef=""/>
+  <endpoint-interaction portType="InsertItemDB_ptt" operation="insert">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="InsertItemDB.Cart"/>
+      <property name="DmlType" value="insert"/>
+      <property name="MappingsMetaDataURL" value="InsertItemDB-or-mappings.xml"/>
+      <property name="DetectOmissions" value="true"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

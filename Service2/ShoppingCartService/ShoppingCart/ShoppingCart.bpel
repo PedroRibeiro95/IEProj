@@ -31,7 +31,10 @@
          xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
          xmlns:ns4="http://xmlns.oracle.com/CheckItemService/CheckItem/CheckItem"
          xmlns:ns5="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB"
-         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB">
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertItemDB"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <import namespace="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart" location="ShoppingCart.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <!-- 
@@ -49,10 +52,10 @@
     <partnerLink name="shoppingcart_client" partnerLinkType="client:ShoppingCart" myRole="ShoppingCartProvider"/>
     <partnerLink name="CheckRegistered" partnerLinkType="ns1:CheckRegister"
                  partnerRole="CheckRegisterProvider"/>
-    <partnerLink name="InsertItem" partnerLinkType="ns2:InsertItem"
-                 partnerRole="InsertItemProvider"/>
     <partnerLink name="CheckItemDB" partnerLinkType="ns5:CheckItemDB_plt"
                  partnerRole="CheckItemDB_role"/>
+    <partnerLink name="InsertItemDB" partnerLinkType="ns7:InsertItemDB_plt"
+                 partnerRole="InsertItemDB_role"/>
   </partnerLinks>
 
   <!-- 
@@ -71,14 +74,12 @@
               messageType="ns1:CheckRegisterRequestMessage"/>
     <variable name="Invoke_CheckRegistered_process_OutputVariable"
               messageType="ns1:CheckRegisterResponseMessage"/>
-    <variable name="Invoke_InsertItem_process_InputVariable"
-              messageType="ns2:InsertItemRequestMessage"/>
-    <variable name="Invoke_InsertItem_process_OutputVariable"
-              messageType="ns2:InsertItemResponseMessage"/>
     <variable name="Invoke_CheckItem_selectByPrimaryKey_InputVariable"
               messageType="ns5:selectByPrimaryKey_inputParameters"/>
     <variable name="Invoke_CheckItem_selectByPrimaryKey_OutputVariable"
               messageType="ns5:StockCollection_msg"/>
+    <variable name="Invoke_InsertItemDB_insert_InputVariable"
+              messageType="ns7:CartCollection_msg"/>
   </variables>
 
   <!-- 
@@ -133,22 +134,21 @@
             <assign name="Assign_ItemInformation">
               <copy>
                 <from>$inputVariable.payload/ns3:Userid</from>
-                <to>$Invoke_InsertItem_process_InputVariable.payload/ns3:Userid</to>
+                <to>$Invoke_InsertItemDB_insert_InputVariable.CartCollection/ns8:Cart/ns8:userid</to>
               </copy>
               <copy>
                 <from>$inputVariable.payload/ns3:Itemid</from>
-                <to>$Invoke_InsertItem_process_InputVariable.payload/ns3:Itemid</to>
+                <to>$Invoke_InsertItemDB_insert_InputVariable.CartCollection/ns8:Cart/ns8:itemid</to>
               </copy>
               <copy>
                 <from>$inputVariable.payload/ns3:Quantity</from>
-                <to>$Invoke_InsertItem_process_InputVariable.payload/ns3:Quantity</to>
+                <to>$Invoke_InsertItemDB_insert_InputVariable.CartCollection/ns8:Cart/ns8:quantity</to>
               </copy>
             </assign>
-            <invoke name="Invoke_InsertItem" partnerLink="InsertItem"
-                    portType="ns2:InsertItem" operation="process"
-                    bpelx:invokeAsDetail="no"
-                    inputVariable="Invoke_InsertItem_process_InputVariable"
-                    outputVariable="Invoke_InsertItem_process_OutputVariable"/>
+            <invoke name="Invoke_InsertItemDB" bpelx:invokeAsDetail="yes"
+                    partnerLink="InsertItemDB" portType="ns7:InsertItemDB_ptt"
+                    operation="insert"
+                    inputVariable="Invoke_InsertItemDB_insert_InputVariable"/>
             <assign name="Assign_OKResponse">
               <copy>
                 <from>"Item inserted in cart"</from>
