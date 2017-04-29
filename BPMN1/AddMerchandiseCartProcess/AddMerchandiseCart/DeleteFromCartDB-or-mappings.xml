@@ -6,7 +6,8 @@
          <class>DeleteFromCartDB.Cart</class>
          <alias>CART</alias>
          <primary-key>
-            <field table="CART" name="ID" xsi:type="column"/>
+            <field table="CART" name="ITEMID" xsi:type="column"/>
+            <field table="CART" name="USERID" xsi:type="column"/>
          </primary-key>
          <events/>
          <querying>
@@ -20,11 +21,6 @@
             </queries>
          </querying>
          <attribute-mappings>
-            <attribute-mapping xsi:type="direct-mapping">
-               <attribute-name>id</attribute-name>
-               <field table="CART" name="ID" xsi:type="column"/>
-               <attribute-classification>java.lang.Long</attribute-classification>
-            </attribute-mapping>
             <attribute-mapping xsi:type="direct-mapping">
                <attribute-name>userid</attribute-name>
                <field table="CART" name="USERID" xsi:type="column"/>
