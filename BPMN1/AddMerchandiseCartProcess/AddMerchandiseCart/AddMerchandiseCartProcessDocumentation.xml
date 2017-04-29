@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="11.1.1.7.0.0.8" fileRevision="20120217"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+    <component name="AddMerchandiseCartProcess">
+        <topicDocumentations>
+            <topicDocumentation name="AddMerchandiseCartProcess">
+                <descriptions>
+                    <description locale="en">AddMerchandiseCartProcess</description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19184723582178">
+                <labels>
+                    <label locale="en">Call RegisterClientService</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT1918473472648">
+                <labels>
+                    <label locale="en">Get Item Info</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19184753013588">
+                <labels>
+                    <label locale="en">Call ShoppingCartService</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19184758215036">
+                <labels>
+                    <label locale="en">Review Quantity</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19184793187470">
+                <labels>
+                    <label locale="en">Subprocess</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19184798645358">
+                <labels>
+                    <label locale="en">Review Quantity</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19184793718873">
+                <labels>
+                    <label locale="en">Start1</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19184793718979">
+                <labels>
+                    <label locale="en">End1</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19184809040725">
+                <labels>
+                    <label locale="en">End Review Rejected</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19184807440837">
+                <labels>
+                    <label locale="en">g1</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf19"/>
+            <topicDocumentation name="sf20"/>
+            <topicDocumentation name="sf21"/>
+            <topicDocumentation name="sf21">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT1918483857189">
+                <labels>
+                    <label locale="en">Call DeleteFromCartDB</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19184938931690">
+                <labels>
+                    <label locale="en">Get Client Info</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19184689546981">
+                <labels>
+                    <label locale="en">Start</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19184689546974">
+                <labels>
+                    <label locale="en">End</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19184824963210">
+                <labels>
+                    <label locale="en">BoundaryEvent</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19184787129014">
+                <labels>
+                    <label locale="en">g1</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19184788249191">
+                <labels>
+                    <label locale="en">g2</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf4"/>
+            <topicDocumentation name="sf10"/>
+            <topicDocumentation name="sf12"/>
+            <topicDocumentation name="sf14"/>
+            <topicDocumentation name="sf13"/>
+            <topicDocumentation name="sf16"/>
+            <topicDocumentation name="sf18"/>
+            <topicDocumentation name="sf24"/>
+            <topicDocumentation name="sf26">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf28"/>
+            <topicDocumentation name="sf30"/>
+            <topicDocumentation name="sf23"/>
+        </topicDocumentations>
+    </component>
+</processDocumentation>

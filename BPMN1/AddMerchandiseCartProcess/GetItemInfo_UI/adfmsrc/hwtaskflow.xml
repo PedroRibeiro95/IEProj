@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<hwTaskFlows xmlns="http://xmlns.oracle.com/bpel/workflow/hwTaskFlowProperties">
+   <ApplicationName>worklist</ApplicationName>
+   <LookupType>LOCAL</LookupType>
+   <TaskFlowDeploy>false</TaskFlowDeploy>
+   <TaskFlowServer>
+      <hostName/>
+      <httpPort/>
+      <httpsPort/>
+   </TaskFlowServer>
+<hwTaskFlow><WorkflowName>GetItemInfo</WorkflowName><TaskDefinitionNamespace>http://xmlns.oracle.com/AddMerchandiseCartProcess/AddMerchandiseCart/GetItemInfo</TaskDefinitionNamespace><TaskFlowId>GetItemInfo_TaskFlow</TaskFlowId><TaskFlowFileName>WEB-INF/GetItemInfo_TaskFlow.xml</TaskFlowFileName></hwTaskFlow><hwTaskFlow><WorkflowName>ReviewQuantity</WorkflowName><TaskDefinitionNamespace>http://xmlns.oracle.com/AddMerchandiseCartProcess/AddMerchandiseCart/ReviewQuantity</TaskDefinitionNamespace><TaskFlowId>ReviewQuantity_TaskFlow</TaskFlowId><TaskFlowFileName>WEB-INF/ReviewQuantity_TaskFlow.xml</TaskFlowFileName></hwTaskFlow></hwTaskFlows>

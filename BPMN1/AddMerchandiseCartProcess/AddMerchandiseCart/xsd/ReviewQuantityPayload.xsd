@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema targetNamespace="http://xmlns.oracle.com/bpel/workflow/task" xmlns:tns="http://xmlns.oracle.com/bpel/workflow/task" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ReviewObject" xmlns:ns0="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ItemInfoObject">
+   <import namespace="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ItemInfoObject" schemaLocation="../businessCatalog/AddMerchandiseCartType/ItemInfoObject.xsd"/>
+   <import namespace="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ReviewObject" schemaLocation="../businessCatalog/AddMerchandiseCartType/ReviewObject.xsd"/>
+   <complexType name="ReviewQuantityPayloadType">
+      <sequence>
+         <element ref="ns0:ItemInfoObject"/>
+         <element ref="ns1:ReviewObject"/>
+      </sequence>
+   </complexType>
+</schema>

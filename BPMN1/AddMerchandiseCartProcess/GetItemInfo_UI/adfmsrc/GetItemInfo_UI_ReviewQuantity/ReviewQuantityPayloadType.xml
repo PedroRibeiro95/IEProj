@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="ReviewQuantityPayloadType" Package="GetItemInfo_UI_ReviewQuantity"
+          BeanClass="GetItemInfo_UI_ReviewQuantity.ReviewQuantityPayloadType"
+          isJavaBased="false">
+  <AccessorAttribute id="ItemInfoObject" IsCollection="true"
+                     BeanClass="GetItemInfo_UI_ReviewQuantity.ItemInfoObjectType"
+                     CollectionBeanClass="GetItemInfo_UI_ReviewQuantity.ItemInfoObjectType_ItemInfoObject_Operations">
+    <Properties>
+      <Property Name="nextSiblingNamespace"
+                Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ReviewObject"/>
+      <Property Name="nextSibling" Value="ReviewObject"/>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Item Info Object"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="ItemInfoObject"/>
+      <Property Name="targetNamespace"
+                Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ItemInfoObject"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="ReviewObject" IsCollection="true"
+                     BeanClass="GetItemInfo_UI_ReviewQuantity.ReviewObjectType"
+                     CollectionBeanClass="GetItemInfo_UI_ReviewQuantity.ReviewObjectType_ReviewObject_Operations">
+    <Properties>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Review Object"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="ReviewObject"/>
+      <Property Name="targetNamespace"
+                Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ReviewObject"/>
+    </Properties>
+  </AccessorAttribute>
+</JavaBean>

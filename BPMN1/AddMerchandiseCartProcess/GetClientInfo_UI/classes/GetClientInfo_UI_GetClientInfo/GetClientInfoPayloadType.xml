@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="11.1.1.64.93"
+          id="GetClientInfoPayloadType" Package="GetClientInfo_UI_GetClientInfo"
+          BeanClass="GetClientInfo_UI_GetClientInfo.GetClientInfoPayloadType"
+          isJavaBased="false">
+  <AccessorAttribute id="ClientInfoObject" IsCollection="true"
+                     BeanClass="GetClientInfo_UI_GetClientInfo.ClientInfoObjectType"
+                     CollectionBeanClass="GetClientInfo_UI_GetClientInfo.ClientInfoObjectType_ClientInfoObject_Operations">
+    <Properties>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Client Info Object"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="ClientInfoObject"/>
+      <Property Name="targetNamespace"
+                Value="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ClientInfoObject"/>
+    </Properties>
+  </AccessorAttribute>
+</JavaBean>
