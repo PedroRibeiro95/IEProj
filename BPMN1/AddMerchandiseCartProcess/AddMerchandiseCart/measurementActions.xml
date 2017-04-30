@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Actions xmlns="http://xmlns.oracle.com/bpm/analytics/measurement">
     <compositeDN>AddMerchandiseCart</compositeDN>
-    <action enabled="false" name="BAMCommand">
+    <action name="BAMCommand" enabled="false">
         <interfaceName>oracle.bpm.analytics.bam.action.BAMActionMDB</interfaceName>
         <properties>
             <property name="InBatch">false</property>
@@ -11,7 +11,7 @@
         </properties>
         <measurementElementName>AddMerchandiseCart</measurementElementName>
     </action>
-    <action enabled="true" name="CubeCommand">
+    <action name="CubeCommand" enabled="true">
         <interfaceName>oracle.bpm.analytics.cube.action.CubeActionMDB</interfaceName>
         <properties/>
         <measurementElementName>AddMerchandiseCart</measurementElementName>

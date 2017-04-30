@@ -1,0 +1,25 @@
+<?binding.jca GetCartTotalCost_db.jca?>
+<wsdl:definitions name="GetCartTotalCost" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetCartTotalCost" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartTotalCost" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetCartTotalCost" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="GetCartTotalCost_plt">
+        <plt:role name="GetCartTotalCost_role">
+            <plt:portType name="tns:GetCartTotalCost_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartTotalCost" schemaLocation="xsd/GetCartTotalCost.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="GetCartTotalCostInput_msg">
+        <wsdl:part name="GetCartTotalCostInput_msg" element="db:GetCartTotalCostInput"/>
+    </wsdl:message>
+    <wsdl:message name="GetCartTotalCostOutput_msg">
+        <wsdl:part name="GetCartTotalCostOutput" element="db:GetCartTotalCostOutput"/>
+    </wsdl:message>
+    <wsdl:portType name="GetCartTotalCost_ptt">
+        <wsdl:operation name="GetCartTotalCost">
+            <wsdl:input message="tns:GetCartTotalCostInput_msg"/>
+            <wsdl:output message="tns:GetCartTotalCostOutput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

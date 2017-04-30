@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema targetNamespace="http://xmlns.oracle.com/bpel/workflow/task" xmlns:tns="http://xmlns.oracle.com/bpel/workflow/task" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <complexType name="ShippingInformationPayloadType">
+      <sequence>
+         <element name="clientEmail" type="xsd:string"/>
+         <element name="clientAddress" type="xsd:string"/>
+         <element name="boutiqueAddress" type="xsd:string"/>
+         <element name="shippingTimes" type="xsd:int"/>
+      </sequence>
+   </complexType>
+</schema>

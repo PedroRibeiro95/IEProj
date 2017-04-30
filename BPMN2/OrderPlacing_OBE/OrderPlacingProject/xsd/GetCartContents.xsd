@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartContents" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartContents" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="GetCartContentsInput" type="GetCartContentsInput"/>
+   <xs:complexType name="GetCartContentsInput">
+      <xs:sequence>
+         <xs:element name="email" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="GetCartContentsOutputCollection" type="GetCartContentsOutputCollection"/>
+   <xs:complexType name="GetCartContentsOutputCollection">
+      <xs:sequence>
+         <xs:element name="GetCartContentsOutput" type="GetCartContentsOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="GetCartContentsOutput">
+      <xs:sequence>
+         <xs:element name="itemID" type="xs:decimal" nillable="true"/>
+         <xs:element name="itemPrice" type="xs:decimal" nillable="true"/>
+         <xs:element name="itemQuantity" type="xs:decimal" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

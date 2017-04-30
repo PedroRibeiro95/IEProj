@@ -74,14 +74,6 @@
               override="may">120</property>
   </reference>
   <wire>
-    <source.uri>AddMerchandiseCartProcess/Services.Externals.RegisterClientService.reference</source.uri>
-    <target.uri>RegisterClientService</target.uri>
-  </wire>
-  <wire>
-    <source.uri>AddMerchandiseCartProcess/Services.Externals.ShoppingCartService.reference</source.uri>
-    <target.uri>ShoppingCartService</target.uri>
-  </wire>
-  <wire>
     <source.uri>AddMerchandiseCartProcess/Services.Externals.DeleteFromCartDB.reference</source.uri>
     <target.uri>DeleteFromCartDB</target.uri>
   </wire>
@@ -100,5 +92,13 @@
   <wire>
     <source.uri>AddMerchandiseCartProcess/Rules.Addmerchandisecart.QuantityRule.QuantityRule_DecisionService_1.reference</source.uri>
     <target.uri>QuantityRule/QuantityRule_DecisionService_1</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.RegisterClientService.reference</source.uri>
+    <target.uri>RegisterClientService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.ShoppingCartService.reference</source.uri>
+    <target.uri>ShoppingCartService</target.uri>
   </wire>
 </composite>

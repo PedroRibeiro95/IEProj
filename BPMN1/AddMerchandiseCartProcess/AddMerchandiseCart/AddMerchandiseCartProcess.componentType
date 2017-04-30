@@ -4,14 +4,6 @@
                xmlns="http://xmlns.oracle.com/sca/1.0"
                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                xmlns:ui="http://xmlns.oracle.com/soa/designer/">
-  <reference name="Services.Externals.RegisterClientService.reference"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/RegisterClient/RegisterClient.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient#wsdl.interface(RegisterClient)"/>
-  </reference>
-  <reference name="Services.Externals.ShoppingCartService.reference"
-             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/ShoppingCart/ShoppingCart.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.interface(ShoppingCart)"/>
-  </reference>
   <reference name="Services.Externals.DeleteFromCartDB.reference"
              ui:wsdlLocation="DeleteFromCartDB.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/DeleteFromCartDB#wsdl.interface(DeleteFromCartDB_ptt)"/>
@@ -34,5 +26,13 @@
   <reference name="Rules.Addmerchandisecart.QuantityRule.QuantityRule_DecisionService_1.reference"
              ui:wsdlLocation="QuantityRule_DecisionService_1.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/QuantityRule/QuantityRule_DecisionService_1#wsdl.interface(IDecisionService)"/>
+  </reference>
+  <reference name="Services.Externals.RegisterClientService.reference"
+             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/RegisterClient/RegisterClient.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient#wsdl.interface(RegisterClient)"/>
+  </reference>
+  <reference name="Services.Externals.ShoppingCartService.reference"
+             ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/ShoppingCart/ShoppingCart.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.interface(ShoppingCart)"/>
   </reference>
 </componentType>

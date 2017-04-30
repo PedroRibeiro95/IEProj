@@ -88,7 +88,7 @@
 
     <!-- Receive input from requestor. (Note: This maps to operation defined in GetShippingRateProcess.wsdl) -->
     <receive name="receiveInput" partnerLink="getshippingrateprocess_client" portType="client:GetShippingRateProcess" operation="process" variable="inputVariable" createInstance="yes"/>
-    <assign name="Assign1">
+    <assign name="Assign_InitialShippingInformation">
       <copy>
         <from>$inputVariable.payload/client:boutiqueAddress</from>
         <to>$GetShippingRateCarrierA_calculateShippingRate_InputVariable.parameters/boutiqueAdress</to>
@@ -133,8 +133,11 @@
       </sequence>
     </flow>
     <if name="IsCarrierABestRate">
+      <documentation>
+        <![CDATA[CarrierAIsTheBest]]>
+      </documentation>
       <condition>$GetShippingRateCarrierA_calculateShippingRate_OutputVariable.parameters/return &lt;= $GetShippingRateCarrierB_calculateShippingRate_OutputVariable.parameters/return</condition>
-      <assign name="Assign2">
+      <assign name="Assign_CarrierAMessage">
         <copy>
           <from>"A"</from>
           <to>$outputVariable.payload/client:carrierName</to>
@@ -145,7 +148,10 @@
         </copy>
       </assign>
       <else>
-        <assign name="Assign3">
+        <documentation>
+          <![CDATA[CarrierBIsTheBest]]>
+        </documentation>
+        <assign name="Assign_CarrierBMessage">
           <copy>
             <from>"B"</from>
             <to>$outputVariable.payload/client:carrierName</to>

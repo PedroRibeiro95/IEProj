@@ -1,0 +1,25 @@
+<?binding.jca GetPhoneNumber_db.jca?>
+<wsdl:definitions name="GetPhoneNumber" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetPhoneNumber" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/GetPhoneNumber" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetPhoneNumber" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="GetPhoneNumber_plt">
+        <plt:role name="GetPhoneNumber_role">
+            <plt:portType name="tns:GetPhoneNumber_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetPhoneNumber" schemaLocation="xsd/GetPhoneNumber.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="GetPhoneNumberInput_msg">
+        <wsdl:part name="GetPhoneNumberInput_msg" element="db:GetPhoneNumberInput"/>
+    </wsdl:message>
+    <wsdl:message name="GetPhoneNumberOutputCollection_msg">
+        <wsdl:part name="GetPhoneNumberOutputCollection" element="db:GetPhoneNumberOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetPhoneNumber_ptt">
+        <wsdl:operation name="GetPhoneNumber">
+            <wsdl:input message="tns:GetPhoneNumberInput_msg"/>
+            <wsdl:output message="tns:GetPhoneNumberOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

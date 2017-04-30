@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="shipping_ui" ClientType="Generic">
+  <pageMap>
+    <page path="/taskDetails1.jspx" usageId="shipping_ui_taskDetails1PageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="shipping_ui_taskDetails1PageDef"
+          path="shipping_ui.pageDefs.taskDetails1PageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="Shipping_UI_ShippingInformation"
+        path="shipping_ui.Shipping_UI_ShippingInformation"/>
+  </dataControlUsages>
+</Application>

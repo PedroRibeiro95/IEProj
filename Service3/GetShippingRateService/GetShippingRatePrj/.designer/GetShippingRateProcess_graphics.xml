@@ -5,10 +5,10 @@
    <iconize/>
    <partnerlink_locations>
       <partnerlink name="getshippingrateprocess_client" x="2" y="437" side="left"/>
-      <partnerlink name="GetShippingRateCarrierB" x="1224" y="299" side="right"/>
-      <partnerlink name="GetShippingRateCarrierA" x="1224" y="356" side="right"/>
+      <partnerlink name="GetShippingRateCarrierB" x="744" y="299" side="right"/>
+      <partnerlink name="GetShippingRateCarrierA" x="744" y="356" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="0,0,1354,536" show_swimlanes="true">
+   <graph_layout viewport="0,0,874,524" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/flow" type="flow"/>

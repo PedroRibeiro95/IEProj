@@ -77,7 +77,7 @@
 
     <!-- Receive input from requestor. (Note: This maps to operation defined in CheckRegister.wsdl) -->
     <receive name="receiveInput" partnerLink="checkregister_client" portType="client:CheckRegister" operation="process" variable="inputVariable" createInstance="yes"/>
-    <assign name="Assign1">
+    <assign name="Assign_Email">
       <copy>
         <from>$inputVariable.payload/ns2:Email</from>
         <to>$Invoke1_selectByPrimaryKey_InputVariable.selectByPrimaryKey_inputParameters/ns3:email</to>
@@ -94,7 +94,7 @@
         <![CDATA[Account Exists]]>
       </documentation>
       <condition>$Invoke1_selectByPrimaryKey_OutputVariable.ClientCollection/ns3:Client/ns3:email != ''</condition>
-      <assign name="Assign2">
+      <assign name="Assign_AccountExistsMessage">
         <copy>
           <from>concat('', 'ACC')</from>
           <to>$outputVariable.payload/ns2:Response</to>
@@ -104,7 +104,7 @@
         <documentation>
           <![CDATA[Create Account]]>
         </documentation>
-        <assign name="Assign3">
+        <assign name="Assign_NoAccountMessage">
           <copy>
             <from>concat('', 'NOACC')</from>
             <to>$outputVariable.payload/ns2:Response</to>

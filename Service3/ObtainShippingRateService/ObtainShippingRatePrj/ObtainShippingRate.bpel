@@ -84,21 +84,7 @@
     <sequence name="main">
         <!-- Receive input from requestor. (Note: This maps to operation defined in ObtainShippingRate.wsdl) -->
         <receive name="receiveInput" partnerLink="obtainshippingrate_client" portType="client:ObtainShippingRate" operation="process" variable="inputVariable" createInstance="yes"/>
-        <assign name="Assign3">
-            <copy>
-                <from>$inputVariable.payload/client:boutiqueAddress</from>
-                <to>$GetBestRate_process_InputVariable_1.payload/ns2:boutiqueAddress</to>
-            </copy>
-            <copy>
-                <from>$inputVariable.payload/client:clientAddress</from>
-                <to>$GetBestRate_process_InputVariable_1.payload/ns2:clientAddress</to>
-            </copy>
-            <copy>
-                <from>$inputVariable.payload/client:shippingTimes</from>
-                <to>$GetBestRate_process_InputVariable_1.payload/ns2:shippingTimes</to>
-            </copy>
-        </assign>
-        <assign name="Assign4">
+        <assign name="Assign_ClientAddress">
             <copy>
                 <from>$inputVariable.payload/client:clientAddress</from>
                 <to>$VerifyAddress_verifiedAddress_InputVariable.parameters/Address</to>
@@ -116,13 +102,27 @@
             </documentation>
             <condition>$VerifyAddress_verifiedAddress_OutputVariable.parameters/return = true()</condition>
             <sequence name="Sequence1">
+                <assign name="Assign_ShippingInformation">
+                    <copy>
+                        <from>$inputVariable.payload/client:boutiqueAddress</from>
+                        <to>$GetBestRate_process_InputVariable_1.payload/ns2:boutiqueAddress</to>
+                    </copy>
+                    <copy>
+                        <from>$inputVariable.payload/client:clientAddress</from>
+                        <to>$GetBestRate_process_InputVariable_1.payload/ns2:clientAddress</to>
+                    </copy>
+                    <copy>
+                        <from>$inputVariable.payload/client:shippingTimes</from>
+                        <to>$GetBestRate_process_InputVariable_1.payload/ns2:shippingTimes</to>
+                    </copy>
+                </assign>
                 <invoke name="GetBestRate" bpelx:invokeAsDetail="no"
                         partnerLink="GetShippingRate"
                         portType="ns2:GetShippingRateProcess"
                         operation="process"
                         inputVariable="GetBestRate_process_InputVariable_1"
                         outputVariable="GetBestRate_process_OutputVariable_1"/>
-                <assign name="Assign1">
+                <assign name="Assign_BestCarrierMessage">
                     <copy>
                         <from>$GetBestRate_process_OutputVariable_1.payload/ns2:carrierName</from>
                         <to>$outputVariable.payload/client:carrierName</to>
@@ -139,9 +139,9 @@
             </sequence>
             <else>
                 <documentation>
-                    <![CDATA[ClienteAddressKO]]>
+                    <![CDATA[ClientAddressIsWrong]]>
                 </documentation>
-                <assign name="Assign2">
+                <assign name="Assign_BadAddressMessage">
                     <copy>
                         <from>"KO"</from>
                         <to>$outputVariable.payload/client:status</to>

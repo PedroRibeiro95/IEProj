@@ -68,7 +68,7 @@
 
     <!-- Receive input from requestor. (Note: This maps to operation defined in GetID.wsdl) -->
     <receive name="receiveInput" partnerLink="getid_client" portType="client:GetID" operation="process" variable="inputVariable" createInstance="yes"/>
-    <assign name="Assign1">
+    <assign name="Assign_Email">
       <copy>
         <from>$inputVariable.payload/ns2:Email</from>
         <to>$Invoke_GetClientIDDB_selectByPrimaryKey_InputVariable.selectByPrimaryKey_inputParameters/ns3:email</to>
@@ -79,7 +79,7 @@
             operation="selectByPrimaryKey" bpelx:invokeAsDetail="no"
             inputVariable="Invoke_GetClientIDDB_selectByPrimaryKey_InputVariable"
             outputVariable="Invoke_GetClientIDDB_selectByPrimaryKey_OutputVariable"/>
-    <assign name="Assign2">
+    <assign name="Assign_Id">
       <copy>
         <from>$Invoke_GetClientIDDB_selectByPrimaryKey_OutputVariable.ClientCollection/ns3:Client/ns3:id</from>
         <to>$outputVariable.payload/ns2:Id</to>

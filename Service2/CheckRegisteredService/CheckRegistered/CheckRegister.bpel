@@ -79,7 +79,7 @@
 
     <!-- Receive input from requestor. (Note: This maps to operation defined in CheckRegister.wsdl) -->
     <receive name="receiveInput" partnerLink="checkregister_client" portType="client:CheckRegister" operation="process" variable="inputVariable" createInstance="yes"/>
-    <assign name="Assign1">
+    <assign name="Assign_IdAndPassword">
       <copy>
         <from>$inputVariable.payload/ns2:Id</from>
         <to>$Invoke_ChecKRegisterDB_CheckRegisterDBSelect_InputVariable.CheckRegisterDBSelect_inputParameters/ns3:id</to>
@@ -94,7 +94,7 @@
             operation="CheckRegisterDBSelect" bpelx:invokeAsDetail="no"
             inputVariable="Invoke_ChecKRegisterDB_CheckRegisterDBSelect_InputVariable"
             outputVariable="Invoke_ChecKRegisterDB_CheckRegisterDBSelect_OutputVariable"/>
-    <assign name="Assign2">
+    <assign name="Assign_IsRegisteredReply">
       <copy>
         <from>$Invoke_ChecKRegisterDB_CheckRegisterDBSelect_OutputVariable.ClientCollection/ns3:Client/ns3:email != ''</from>
         <to>$outputVariable.payload/ns2:IsRegistered</to>

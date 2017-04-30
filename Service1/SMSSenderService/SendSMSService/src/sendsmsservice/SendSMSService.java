@@ -81,7 +81,7 @@ public class SendSMSService {
             
         }
         catch (IOException e) {
-            throw new SMSServiceCallException("Failed to connect");
+            throw new SMSServiceCallException("IO error");
         }
     }
 

@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<hwTaskFlows xmlns="http://xmlns.oracle.com/bpel/workflow/hwTaskFlowProperties">
+   <ApplicationName>worklist</ApplicationName>
+   <LookupType>LOCAL</LookupType>
+   <TaskFlowDeploy>false</TaskFlowDeploy>
+   <TaskFlowServer>
+      <hostName/>
+      <httpPort/>
+      <httpsPort/>
+   </TaskFlowServer>
+<hwTaskFlow><WorkflowName>PaymentInformation</WorkflowName><TaskDefinitionNamespace>http://xmlns.oracle.com/OrderPlacing_OBE/OrderPlacingProject/PaymentInformation</TaskDefinitionNamespace><TaskFlowId>PaymentInformation_TaskFlow</TaskFlowId><TaskFlowFileName>WEB-INF/PaymentInformation_TaskFlow.xml</TaskFlowFileName></hwTaskFlow></hwTaskFlows>

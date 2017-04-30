@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema targetNamespace="http://xmlns.oracle.com/bpel/workflow/task" xmlns:tns="http://xmlns.oracle.com/bpel/workflow/task" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartContents" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartContents" schemaLocation="GetCartContents.xsd"/>
+   <complexType name="OrderReviewPayloadType">
+      <sequence>
+         <element name="clientAddress" type="xsd:string"/>
+         <element name="boutiqueAddress" type="xsd:string"/>
+         <element name="shippingTimes" type="xsd:int"/>
+         <element name="shippingRate" type="xsd:double"/>
+         <element name="carrierName" type="xsd:string"/>
+         <element name="cartTotalCost" type="xsd:decimal"/>
+         <element ref="ns0:GetCartContentsOutputCollection"/>
+      </sequence>
+   </complexType>
+</schema>

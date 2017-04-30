@@ -7,7 +7,7 @@
       <partnerlink name="getid_client" x="15" y="275" side="left"/>
       <partnerlink name="GetClientIDDB" x="755" y="278" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="0,225,874,293" show_swimlanes="true">
+   <graph_layout viewport="0,0,874,524" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
    </graph_layout>

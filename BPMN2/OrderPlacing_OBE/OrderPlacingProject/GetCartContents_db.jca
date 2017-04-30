@@ -1,0 +1,13 @@
+<adapter-config name="GetCartContents" adapter="Database Adapter" wsdlLocation="GetCartContents.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="ConnectionDB" adapterRef=""/>
+  <endpoint-interaction portType="GetCartContents_ptt" operation="GetCartContents">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select s.itemid as itemID, s.price as itemPrice, ca.quantity as itemQuantity from cart ca, client cl, stock s where ca.userid = cl.id and ca.itemid = s.itemid and cl.email = #email"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+    <output/>
+  </endpoint-interaction>
+
+</adapter-config>

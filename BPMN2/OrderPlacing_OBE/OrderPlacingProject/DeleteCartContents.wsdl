@@ -1,0 +1,21 @@
+<?binding.jca DeleteCartContents_db.jca?>
+<wsdl:definitions name="DeleteCartContents" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/DeleteCartContents" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/DeleteCartContents" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/DeleteCartContents" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="DeleteCartContents_plt">
+        <plt:role name="DeleteCartContents_role">
+            <plt:portType name="tns:DeleteCartContents_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/DeleteCartContents" schemaLocation="xsd/DeleteCartContents.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="DeleteCartContentsInput_msg">
+        <wsdl:part name="DeleteCartContentsInput_msg" element="db:DeleteCartContentsInput"/>
+    </wsdl:message>
+    <wsdl:portType name="DeleteCartContents_ptt">
+        <wsdl:operation name="DeleteCartContents">
+            <wsdl:input message="tns:DeleteCartContentsInput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

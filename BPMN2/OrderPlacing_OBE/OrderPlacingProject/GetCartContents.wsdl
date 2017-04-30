@@ -1,0 +1,25 @@
+<?binding.jca GetCartContents_db.jca?>
+<wsdl:definitions name="GetCartContents" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetCartContents" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartContents" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetCartContents" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="GetCartContents_plt">
+        <plt:role name="GetCartContents_role">
+            <plt:portType name="tns:GetCartContents_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetCartContents" schemaLocation="xsd/GetCartContents.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="GetCartContentsInput_msg">
+        <wsdl:part name="GetCartContentsInput_msg" element="db:GetCartContentsInput"/>
+    </wsdl:message>
+    <wsdl:message name="GetCartContentsOutputCollection_msg">
+        <wsdl:part name="GetCartContentsOutputCollection" element="db:GetCartContentsOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetCartContents_ptt">
+        <wsdl:operation name="GetCartContents">
+            <wsdl:input message="tns:GetCartContentsInput_msg"/>
+            <wsdl:output message="tns:GetCartContentsOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

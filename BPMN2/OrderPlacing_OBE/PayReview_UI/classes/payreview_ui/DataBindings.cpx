@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="payreview_ui" ClientType="Generic">
+  <pageMap>
+    <page path="/taskDetails1.jspx" usageId="payreview_ui_taskDetails1PageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="payreview_ui_taskDetails1PageDef"
+          path="payreview_ui.pageDefs.taskDetails1PageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="PayReview_UI_PaymentReview"
+        path="payreview_ui.PayReview_UI_PaymentReview"/>
+  </dataControlUsages>
+</Application>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="11.1.1.7.0.0.8" fileRevision="20120217"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+    <component name="OrderPlacingProcess">
+        <topicDocumentations>
+            <topicDocumentation name="OrderPlacingProcess">
+                <descriptions>
+                    <description locale="en">OrderPlacingProcess</description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190121770361">
+                <labels>
+                    <label locale="en">Request shipping details</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190126553096">
+                <labels>
+                    <label locale="en">Get cart contents</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190127417845">
+                <labels>
+                    <label locale="en">Get cart total cost</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190128647451">
+                <labels>
+                    <label locale="en">Request shipping rate</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190130619342">
+                <labels>
+                    <label locale="en">Receive shipping rate</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190131943367">
+                <labels>
+                    <label locale="en">Review order</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190663897725">
+                <labels>
+                    <label locale="en">Delete cart contents</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19190859694097">
+                <labels>
+                    <label locale="en">Request payment information</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT1919089398482">
+                <labels>
+                    <label locale="en">Verify payment automatically</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19191147337231">
+                <labels>
+                    <label locale="en">Verify payment manually</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19191173190663">
+                <labels>
+                    <label locale="en">Process order payment</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19191181971520">
+                <labels>
+                    <label locale="en">Send invoice</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19191519720462">
+                <labels>
+                    <label locale="en">GetClientPhoneNumber</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19190121770289">
+                <labels>
+                    <label locale="en">Order placed</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19190121770279">
+                <labels>
+                    <label locale="en">Invoice sent</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19190666825335">
+                <labels>
+                    <label locale="en">Cart deleted</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="EVT19191163373043">
+                <labels>
+                    <label locale="en">Order cancelled</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19190124838752">
+                <labels>
+                    <label locale="en">PG1</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW1919012509783">
+                <labels>
+                    <label locale="en">PG2</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19190653439843">
+                <labels>
+                    <label locale="en">Order approved?</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19191134313128">
+                <labels>
+                    <label locale="en">High payment?</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW1919115344609">
+                <labels>
+                    <label locale="en">Order authorized?</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19191160317572">
+                <labels>
+                    <label locale="en">EG1</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19191179015367">
+                <labels>
+                    <label locale="en">Payment authorized?</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf30"/>
+            <topicDocumentation name="sf31"/>
+            <topicDocumentation name="sf33"/>
+            <topicDocumentation name="sf34"/>
+            <topicDocumentation name="sf35"/>
+            <topicDocumentation name="sf36"/>
+            <topicDocumentation name="sf40"/>
+            <topicDocumentation name="sf42"/>
+            <topicDocumentation name="sf43"/>
+            <topicDocumentation name="sf44"/>
+            <topicDocumentation name="sf47">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf49"/>
+            <topicDocumentation name="sf55"/>
+            <topicDocumentation name="sf56"/>
+            <topicDocumentation name="sf57"/>
+            <topicDocumentation name="sf32">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf38">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf41"/>
+            <topicDocumentation name="sf45"/>
+            <topicDocumentation name="sf51">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf53"/>
+            <topicDocumentation name="sf54"/>
+            <topicDocumentation name="sf58"/>
+            <topicDocumentation name="sf59"/>
+            <topicDocumentation name="sf61">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf62"/>
+        </topicDocumentations>
+    </component>
+</processDocumentation>

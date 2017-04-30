@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetPhoneNumber" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/GetPhoneNumber" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="GetPhoneNumberInput" type="GetPhoneNumberInput"/>
+   <xs:complexType name="GetPhoneNumberInput">
+      <xs:sequence>
+         <xs:element name="email" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="GetPhoneNumberOutputCollection" type="GetPhoneNumberOutputCollection"/>
+   <xs:complexType name="GetPhoneNumberOutputCollection">
+      <xs:sequence>
+         <xs:element name="GetPhoneNumberOutput" type="GetPhoneNumberOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="GetPhoneNumberOutput">
+      <xs:sequence>
+         <xs:element name="phone_number" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

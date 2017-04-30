@@ -7,7 +7,7 @@
       <partnerlink name="checkregister_client" x="0" y="275" side="left"/>
       <partnerlink name="CheckRegisterDB" x="747" y="278" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="0,150,874,293" show_swimlanes="true">
+   <graph_layout viewport="0,75,874,524" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
    </graph_layout>

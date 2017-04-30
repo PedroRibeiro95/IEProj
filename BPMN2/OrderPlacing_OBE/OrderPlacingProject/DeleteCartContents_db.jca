@@ -1,0 +1,12 @@
+<adapter-config name="DeleteCartContents" adapter="Database Adapter" wsdlLocation="DeleteCartContents.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="ConnectionDB" adapterRef=""/>
+  <endpoint-interaction portType="DeleteCartContents_ptt" operation="DeleteCartContents">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="delete from cart where exists (select client.id from client where client.id = cart.userid and client.email = #email) "/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+  </endpoint-interaction>
+
+</adapter-config>

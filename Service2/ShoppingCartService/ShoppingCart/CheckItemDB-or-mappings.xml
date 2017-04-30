@@ -25,6 +25,16 @@
                <field table="STOCK" name="ITEMID" xsi:type="column"/>
                <attribute-classification>java.lang.Long</attribute-classification>
             </attribute-mapping>
+            <attribute-mapping xsi:type="direct-mapping">
+               <attribute-name>price</attribute-name>
+               <properties>
+                  <property name="enabled">
+                     <value>false</value>
+                  </property>
+               </properties>
+               <field table="STOCK" name="PRICE" xsi:type="column"/>
+               <attribute-classification>java.math.BigDecimal</attribute-classification>
+            </attribute-mapping>
          </attribute-mappings>
          <descriptor-type>independent</descriptor-type>
          <caching>
