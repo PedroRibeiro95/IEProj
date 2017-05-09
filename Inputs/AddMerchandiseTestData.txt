@@ -1,0 +1,26 @@
+# Este ficheiro contem dados a serem usados para testar as features
+# do processo AddMerchandiseCart:
+
+# Introduzir os seguintes dados
+Email: pedro.ribeiro@ist.pt
+Address: Lisboa, Sintra, Agualva, Francisco Lucas Pires, 5, 2735-088 Lisboa
+Phone Number: 351925678358
+
+O utilizador recebe uma mensagem para introduzir as informações sobre o item a inserir.
+
+# Introduzir informação sobre o item
+Userid: (Userid associado a pedro@ribeiro@ist.pt)
+Password: (Password associada a pedro@ribeiro@ist.pt)
+Itemid: 1
+Quantity: 1
+
+Item inserido com sucesso
+
+# Introduzir mais que 50 items
+Userid: (Userid associado a pedro@ribeiro@ist.pt)
+Password: (Password associada a pedro@ribeiro@ist.pt)
+Itemid: 1
+Quantity: 50
+
+O utilizador recebe uma mensagem para dar review à quantidade.
+Se aceitar, item é introduzido. Caso contrário é eliminado.
