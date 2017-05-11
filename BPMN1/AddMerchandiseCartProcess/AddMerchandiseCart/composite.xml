@@ -23,6 +23,11 @@
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/QuantityRule/QuantityRule_DecisionService_1"
           location="QuantityRule_DecisionService_1.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/GetItemPhotoDB"
+          location="GetItemPhotoDB.wsdl" importType="wsdl"/>
+  <import namespace="http://twitterservice/"
+          location="http://soabpm-vm.site:7001/TwitterService-TwitterService-context-root/TwitterAPISoap12HttpPort?wsdl"
+          importType="wsdl"/>
   <property name="productVersion" type="xs:string" many="false">11.1.1.7.0</property>
   <component name="GetClientInfo">
     <implementation.workflow src="GetClientInfo.task"/>
@@ -76,6 +81,27 @@
     <property name="jca.retry.maxInterval" type="xs:string" many="false"
               override="may">120</property>
   </reference>
+  <reference name="GetItemPhotoDB" ui:wsdlLocation="GetItemPhotoDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/GetItemPhotoDB#wsdl.interface(GetItemPhotoDB_ptt)"/>
+    <binding.jca config="GetItemPhotoDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
+  <reference name="TwitterService"
+             ui:wsdlLocation="http://soabpm-vm.site:7001/TwitterService-TwitterService-context-root/TwitterAPISoap12HttpPort?wsdl">
+    <interface.wsdl interface="http://twitterservice/#wsdl.interface(TwitterAPI)"/>
+    <binding.ws port="http://twitterservice/#wsdl.endpoint(TwitterAPIService/TwitterAPISoap12HttpPort)"
+                location="http://soabpm-vm.site:7001/TwitterService-TwitterService-context-root/TwitterAPISoap12HttpPort?wsdl"
+                soapVersion="1.2">
+      <property name="weblogic.wsee.wsat.transaction.flowOption"
+                type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
+  </reference>
   <wire>
     <source.uri>AddMerchandiseCartProcess/Services.Externals.DeleteFromCartDB.reference</source.uri>
     <target.uri>DeleteFromCartDB</target.uri>
@@ -93,6 +119,14 @@
     <target.uri>QuantityRule/QuantityRule_DecisionService_1</target.uri>
   </wire>
   <wire>
+    <source.uri>AddMerchandiseCartProcess/HumanTasks.ItemInfoCycle.reference</source.uri>
+    <target.uri>ItemInfoCycle/TaskService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.GetItemPhotoDB.reference</source.uri>
+    <target.uri>GetItemPhotoDB</target.uri>
+  </wire>
+  <wire>
     <source.uri>AddMerchandiseCartProcess/Services.Externals.RegisterClientService.reference</source.uri>
     <target.uri>RegisterClientService</target.uri>
   </wire>
@@ -101,7 +135,7 @@
     <target.uri>ShoppingCartService</target.uri>
   </wire>
   <wire>
-    <source.uri>AddMerchandiseCartProcess/HumanTasks.ItemInfoCycle.reference</source.uri>
-    <target.uri>ItemInfoCycle/TaskService</target.uri>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.TwitterService.reference</source.uri>
+    <target.uri>TwitterService</target.uri>
   </wire>
 </composite>

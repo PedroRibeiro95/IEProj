@@ -103,6 +103,22 @@
                     <description locale="en"></description>
                 </descriptions>
             </topicDocumentation>
+            <topicDocumentation name="ACT19293895053118">
+                <labels>
+                    <label locale="en">Get URL from Stock DB</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19294110933047">
+                <labels>
+                    <label locale="en">Tweet Product</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
             <topicDocumentation name="EVT19184689546981">
                 <labels>
                     <label locale="en">Start</label>
@@ -180,6 +196,8 @@
             <topicDocumentation name="sf32"/>
             <topicDocumentation name="sf34"/>
             <topicDocumentation name="sf36"/>
+            <topicDocumentation name="sf33"/>
+            <topicDocumentation name="sf35"/>
         </topicDocumentations>
     </component>
 </processDocumentation>
