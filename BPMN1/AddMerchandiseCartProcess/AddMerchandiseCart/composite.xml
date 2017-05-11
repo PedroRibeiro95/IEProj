@@ -42,6 +42,9 @@
   <component name="QuantityRule">
     <implementation.decision src="QuantityRule.decs"/>
   </component>
+  <component name="ItemInfoCycle">
+    <implementation.workflow src="ItemInfoCycle.task"/>
+  </component>
   <reference name="RegisterClientService"
              ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/RegisterClient/RegisterClient.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/RegisterClientService/RegisterClient/RegisterClient#wsdl.interface(RegisterClient)"/>
@@ -78,10 +81,6 @@
     <target.uri>DeleteFromCartDB</target.uri>
   </wire>
   <wire>
-    <source.uri>AddMerchandiseCartProcess/HumanTasks.GetItemInfo.reference</source.uri>
-    <target.uri>GetItemInfo/TaskService</target.uri>
-  </wire>
-  <wire>
     <source.uri>AddMerchandiseCartProcess/HumanTasks.ReviewQuantity.reference</source.uri>
     <target.uri>ReviewQuantity/TaskService</target.uri>
   </wire>
@@ -100,5 +99,9 @@
   <wire>
     <source.uri>AddMerchandiseCartProcess/Services.Externals.ShoppingCartService.reference</source.uri>
     <target.uri>ShoppingCartService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/HumanTasks.ItemInfoCycle.reference</source.uri>
+    <target.uri>ItemInfoCycle/TaskService</target.uri>
   </wire>
 </composite>

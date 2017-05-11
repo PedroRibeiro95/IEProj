@@ -32,6 +32,7 @@
    <workflowConfiguration features="ucm" xmlns:ns0="http://xmlns.oracle.com/bpm/bpmobject/AddMerchandiseCartType/ItemInfoObject" xmlns="http://xmlns.oracle.com/bpel/workflow/configuration">
       <outcomes>
          <outcome>SUBMIT</outcome>
+         <outcome>REJECT</outcome>
       </outcomes>
       <payload xmlSchemaDefinition="xsd/GetItemInfoPayload.xsd"
                externalSchema="false">
