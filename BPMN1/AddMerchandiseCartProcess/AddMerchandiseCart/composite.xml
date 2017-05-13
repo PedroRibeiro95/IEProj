@@ -28,12 +28,16 @@
   <import namespace="http://twitterservice/"
           location="http://soabpm-vm.site:7001/TwitterService-TwitterService-context-root/TwitterAPISoap12HttpPort?wsdl"
           importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/CheckCartQuantityDB"
+          location="CheckCartQuantityDB.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/ApplyDiscountDB"
+          location="ApplyDiscountDB.wsdl" importType="wsdl"/>
+  <import namespace="http://sendsmsservice/"
+          location="http://soabpm-vm.site:7001/SMSSender-SendSMSService-context-root/SendSMSServiceSoap12HttpPort?wsdl"
+          importType="wsdl"/>
   <property name="productVersion" type="xs:string" many="false">11.1.1.7.0</property>
   <component name="GetClientInfo">
     <implementation.workflow src="GetClientInfo.task"/>
-  </component>
-  <component name="GetItemInfo">
-    <implementation.workflow src="GetItemInfo.task"/>
   </component>
   <component name="ReviewQuantity">
     <implementation.workflow src="ReviewQuantity.task"/>
@@ -47,8 +51,8 @@
   <component name="QuantityRule">
     <implementation.decision src="QuantityRule.decs"/>
   </component>
-  <component name="ItemInfoCycle">
-    <implementation.workflow src="ItemInfoCycle.task"/>
+  <component name="InsertionCycle">
+    <implementation.workflow src="InsertionCycle.task"/>
   </component>
   <reference name="RegisterClientService"
              ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/RegisterClient/RegisterClient.wsdl">
@@ -102,6 +106,39 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
+  <reference name="CheckCartQuantityDB"
+             ui:wsdlLocation="CheckCartQuantityDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/CheckCartQuantityDB#wsdl.interface(CheckCartQuantityDB_ptt)"/>
+    <binding.jca config="CheckCartQuantityDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
+  <reference name="ApplyDiscountDB" ui:wsdlLocation="ApplyDiscountDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/ApplyDiscountDB#wsdl.interface(ApplyDiscountDB_ptt)"/>
+    <binding.jca config="ApplyDiscountDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
+  <reference name="SendDiscountSMS"
+             ui:wsdlLocation="http://soabpm-vm.site:7001/SMSSender-SendSMSService-context-root/SendSMSServiceSoap12HttpPort?wsdl">
+    <interface.wsdl interface="http://sendsmsservice/#wsdl.interface(SendSMSService)"/>
+    <binding.ws port="http://sendsmsservice/#wsdl.endpoint(SendSMSService/SendSMSServiceSoap12HttpPort)"
+                location="http://soabpm-vm.site:7001/SMSSender-SendSMSService-context-root/SendSMSServiceSoap12HttpPort?wsdl"
+                soapVersion="1.2">
+      <property name="weblogic.wsee.wsat.transaction.flowOption"
+                type="xs:string" many="false">WSDLDriven</property>
+    </binding.ws>
+  </reference>
   <wire>
     <source.uri>AddMerchandiseCartProcess/Services.Externals.DeleteFromCartDB.reference</source.uri>
     <target.uri>DeleteFromCartDB</target.uri>
@@ -119,10 +156,6 @@
     <target.uri>QuantityRule/QuantityRule_DecisionService_1</target.uri>
   </wire>
   <wire>
-    <source.uri>AddMerchandiseCartProcess/HumanTasks.ItemInfoCycle.reference</source.uri>
-    <target.uri>ItemInfoCycle/TaskService</target.uri>
-  </wire>
-  <wire>
     <source.uri>AddMerchandiseCartProcess/Services.Externals.GetItemPhotoDB.reference</source.uri>
     <target.uri>GetItemPhotoDB</target.uri>
   </wire>
@@ -137,5 +170,21 @@
   <wire>
     <source.uri>AddMerchandiseCartProcess/Services.Externals.TwitterService.reference</source.uri>
     <target.uri>TwitterService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.CheckCartQuantityDB.reference</source.uri>
+    <target.uri>CheckCartQuantityDB</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.ApplyDiscountDB.reference</source.uri>
+    <target.uri>ApplyDiscountDB</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.SendDiscountSMS.reference</source.uri>
+    <target.uri>SendDiscountSMS</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/HumanTasks.InsertionCycle.reference</source.uri>
+    <target.uri>InsertionCycle/TaskService</target.uri>
   </wire>
 </composite>

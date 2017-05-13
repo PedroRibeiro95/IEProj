@@ -119,6 +119,30 @@
                     <description locale="en"></description>
                 </descriptions>
             </topicDocumentation>
+            <topicDocumentation name="ACT19308709723569">
+                <labels>
+                    <label locale="en">Check Quantity of items in Cart</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19308760245585">
+                <labels>
+                    <label locale="en">Apply Discount</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19308794702655">
+                <labels>
+                    <label locale="en">Send SMS Discount</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
             <topicDocumentation name="EVT19184689546981">
                 <labels>
                     <label locale="en">Start</label>
@@ -155,7 +179,7 @@
             </topicDocumentation>
             <topicDocumentation name="GTW19264761429555">
                 <labels>
-                    <label locale="en">gOrder</label>
+                    <label locale="en">Keep inserting items?</label>
                 </labels>
                 <descriptions>
                     <description locale="en"></description>
@@ -164,6 +188,22 @@
             <topicDocumentation name="GTW19264795970276">
                 <labels>
                     <label locale="en">gOrder2</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19308722406261">
+                <labels>
+                    <label locale="en">Enough items for discount?</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19308915187436">
+                <labels>
+                    <label locale="en">g4</label>
                 </labels>
                 <descriptions>
                     <description locale="en"></description>
@@ -198,6 +238,16 @@
             <topicDocumentation name="sf36"/>
             <topicDocumentation name="sf33"/>
             <topicDocumentation name="sf35"/>
+            <topicDocumentation name="sf37"/>
+            <topicDocumentation name="sf38"/>
+            <topicDocumentation name="sf40">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf42"/>
+            <topicDocumentation name="sf43"/>
+            <topicDocumentation name="sf45"/>
         </topicDocumentations>
     </component>
 </processDocumentation>

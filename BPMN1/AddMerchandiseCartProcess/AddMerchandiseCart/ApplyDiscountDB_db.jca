@@ -1,0 +1,12 @@
+<adapter-config name="ApplyDiscountDB" adapter="Database Adapter" wsdlLocation="ApplyDiscountDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="Connection_DB" adapterRef=""/>
+  <endpoint-interaction portType="ApplyDiscountDB_ptt" operation="ApplyDiscountDB">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="UPDATE client SET discount=30 WHERE email=#email"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+  </endpoint-interaction>
+
+</adapter-config>

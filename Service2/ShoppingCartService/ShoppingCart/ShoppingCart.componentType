@@ -14,7 +14,7 @@
   <reference name="CheckItemDB" ui:wsdlLocation="CheckItemDB.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB#wsdl.interface(CheckItemDB_ptt)"/>
   </reference>
-  <reference name="InsertItemDB" ui:wsdlLocation="InsertItemDB.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB#wsdl.interface(InsertItemDB_ptt)"/>
+  <reference name="InsertCartDB" ui:wsdlLocation="InsertCartDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB#wsdl.interface(InsertCartDB_ptt)"/>
   </reference>
 </componentType>

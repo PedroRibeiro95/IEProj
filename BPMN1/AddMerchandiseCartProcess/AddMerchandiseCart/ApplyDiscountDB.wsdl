@@ -1,0 +1,21 @@
+<?binding.jca ApplyDiscountDB_db.jca?>
+<wsdl:definitions name="ApplyDiscountDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/ApplyDiscountDB" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/ApplyDiscountDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/ApplyDiscountDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="ApplyDiscountDB_plt">
+        <plt:role name="ApplyDiscountDB_role">
+            <plt:portType name="tns:ApplyDiscountDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ApplyDiscountDB" schemaLocation="xsd/ApplyDiscountDB.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="ApplyDiscountDBInput_msg">
+        <wsdl:part name="ApplyDiscountDBInput_msg" element="db:ApplyDiscountDBInput"/>
+    </wsdl:message>
+    <wsdl:portType name="ApplyDiscountDB_ptt">
+        <wsdl:operation name="ApplyDiscountDB">
+            <wsdl:input message="tns:ApplyDiscountDBInput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

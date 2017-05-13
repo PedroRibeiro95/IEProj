@@ -2,16 +2,6 @@
 <Faults>
    <Fault>
       <severity>warning</severity>
-      <loc>/ns:composite/ns:component[@name='GetItemInfo/TaskService']</loc>
-      <line/>
-      <col/>
-      <file>/media/sf_IEProj/BPMN1/AddMerchandiseCartProcess/AddMerchandiseCart/composite.xml</file>
-      <name>/media/sf_IEProj/BPMN1/AddMerchandiseCartProcess/AddMerchandiseCart/composite.xml</name>
-      <fix/>
-      <msg>The service "TaskService" exposed by component "GetItemInfo" is not wired to/used by any other component.</msg>
-   </Fault>
-   <Fault>
-      <severity>warning</severity>
       <loc/>
       <line/>
       <col/>
@@ -25,28 +15,18 @@
       <loc/>
       <line/>
       <col/>
-      <file>GetItemInfo.task</file>
-      <name>GetItemInfo.task</name>
-      <fix/>
-      <msg>Error assignee not specified</msg>
-   </Fault>
-   <Fault>
-      <severity>warning</severity>
-      <loc/>
-      <line/>
-      <col/>
-      <file>ItemInfoCycle.task</file>
-      <name>ItemInfoCycle.task</name>
-      <fix/>
-      <msg>Error assignee not specified</msg>
-   </Fault>
-   <Fault>
-      <severity>warning</severity>
-      <loc/>
-      <line/>
-      <col/>
       <file>ReviewQuantity.task</file>
       <name>ReviewQuantity.task</name>
+      <fix/>
+      <msg>Error assignee not specified</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>InsertionCycle.task</file>
+      <name>InsertionCycle.task</name>
       <fix/>
       <msg>Error assignee not specified</msg>
    </Fault>

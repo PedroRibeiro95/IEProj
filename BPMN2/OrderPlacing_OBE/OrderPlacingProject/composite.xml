@@ -32,6 +32,8 @@
   <import namespace="http://paymentprocessingservice/"
           location="http://soabpm-vm.site:7001/PaymentProcessing-PaymentProcessingService-context-root/PaymentProcessingSoap12HttpPort?wsdl"
           importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetDiscountDB"
+          location="GetDiscountDB.wsdl" importType="wsdl"/>
   <property name="productVersion" type="xs:string" many="false">11.1.1.7.0</property>
   <component name="OrderPlacingProcess">
     <implementation.bpmn src="processes/OrderPlacingProcess.bpmn"/>
@@ -133,6 +135,17 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
+  <reference name="GetDiscountDB" ui:wsdlLocation="GetDiscountDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetDiscountDB#wsdl.interface(GetDiscountDB_ptt)"/>
+    <binding.jca config="GetDiscountDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
   <wire>
     <source.uri>OrderPlacingProcess/Services.Externals.GetCartContents.reference</source.uri>
     <target.uri>GetCartContents</target.uri>
@@ -180,5 +193,9 @@
   <wire>
     <source.uri>OrderPlacingProcess/Services.Externals.SendSMS.reference</source.uri>
     <target.uri>SendSMS</target.uri>
+  </wire>
+  <wire>
+    <source.uri>OrderPlacingProcess/Services.Externals.GetDiscountDB.reference</source.uri>
+    <target.uri>GetDiscountDB</target.uri>
   </wire>
 </composite>

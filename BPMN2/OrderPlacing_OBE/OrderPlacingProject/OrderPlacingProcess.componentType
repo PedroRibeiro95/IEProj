@@ -57,4 +57,8 @@
              ui:wsdlLocation="http://soabpm-vm.site:7001/SMSSender-SendSMSService-context-root/SendSMSServiceSoap12HttpPort?wsdl">
     <interface.wsdl interface="http://sendsmsservice/#wsdl.interface(SendSMSService)"/>
   </reference>
+  <reference name="Services.Externals.GetDiscountDB.reference"
+             ui:wsdlLocation="GetDiscountDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetDiscountDB#wsdl.interface(GetDiscountDB_ptt)"/>
+  </reference>
 </componentType>

@@ -1,0 +1,25 @@
+<?binding.jca CheckCartQuantityDB_db.jca?>
+<wsdl:definitions name="CheckCartQuantityDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/CheckCartQuantityDB" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/CheckCartQuantityDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/CheckCartQuantityDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="CheckCartQuantityDB_plt">
+        <plt:role name="CheckCartQuantityDB_role">
+            <plt:portType name="tns:CheckCartQuantityDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/CheckCartQuantityDB" schemaLocation="xsd/CheckCartQuantityDB.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="CheckCartQuantityDBInput_msg">
+        <wsdl:part name="CheckCartQuantityDBInput_msg" element="db:CheckCartQuantityDBInput"/>
+    </wsdl:message>
+    <wsdl:message name="CheckCartQuantityDBOutput_msg">
+        <wsdl:part name="CheckCartQuantityDBOutput" element="db:CheckCartQuantityDBOutput"/>
+    </wsdl:message>
+    <wsdl:portType name="CheckCartQuantityDB_ptt">
+        <wsdl:operation name="CheckCartQuantityDB">
+            <wsdl:input message="tns:CheckCartQuantityDBInput_msg"/>
+            <wsdl:output message="tns:CheckCartQuantityDBOutput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/CheckCartQuantityDB" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/CheckCartQuantityDB" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="CheckCartQuantityDBInput" type="CheckCartQuantityDBInput"/>
+   <xs:complexType name="CheckCartQuantityDBInput">
+      <xs:sequence>
+         <xs:element name="userid" type="xs:decimal" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="CheckCartQuantityDBOutput" type="CheckCartQuantityDBOutput"/>
+   <xs:complexType name="CheckCartQuantityDBOutput">
+      <xs:sequence>
+         <xs:element name="SUM_QUANTITY_" type="xs:decimal" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

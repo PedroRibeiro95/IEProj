@@ -1,0 +1,21 @@
+<?binding.jca InsertCartDB_db.jca?>
+<wsdl:definitions name="InsertCartDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/InsertCartDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="InsertCartDB_plt">
+        <plt:role name="InsertCartDB_role">
+            <plt:portType name="tns:InsertCartDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/InsertCartDB" schemaLocation="xsd/InsertCartDB.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="InsertCartDBInput_msg">
+        <wsdl:part name="InsertCartDBInput_msg" element="db:InsertCartDBInput"/>
+    </wsdl:message>
+    <wsdl:portType name="InsertCartDB_ptt">
+        <wsdl:operation name="InsertCartDB">
+            <wsdl:input message="tns:InsertCartDBInput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

@@ -17,8 +17,8 @@
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/CheckItemDB"
           location="CheckItemDB.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB"
-          location="InsertItemDB.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB"
+          location="InsertCartDB.wsdl" importType="wsdl"/>
   <service name="shoppingcart_client_ep" ui:wsdlLocation="ShoppingCart.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.interface(ShoppingCart)"/>
     <binding.ws port="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.endpoint(shoppingcart_client_ep/ShoppingCart_pt)"/>
@@ -51,9 +51,9 @@
     <property name="jca.retry.maxInterval" type="xs:string" many="false"
               override="may">120</property>
   </reference>
-  <reference name="InsertItemDB" ui:wsdlLocation="InsertItemDB.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB#wsdl.interface(InsertItemDB_ptt)"/>
-    <binding.jca config="InsertItemDB_db.jca"/>
+  <reference name="InsertCartDB" ui:wsdlLocation="InsertCartDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB#wsdl.interface(InsertCartDB_ptt)"/>
+    <binding.jca config="InsertCartDB_db.jca"/>
     <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
     <property name="jca.retry.interval" type="xs:int" many="false"
               override="may">1</property>
@@ -75,7 +75,7 @@
     <target.uri>CheckItemDB</target.uri>
   </wire>
   <wire>
-    <source.uri>ShoppingCart/InsertItemDB</source.uri>
-    <target.uri>InsertItemDB</target.uri>
+    <source.uri>ShoppingCart/InsertCartDB</source.uri>
+    <target.uri>InsertCartDB</target.uri>
   </wire>
 </composite>

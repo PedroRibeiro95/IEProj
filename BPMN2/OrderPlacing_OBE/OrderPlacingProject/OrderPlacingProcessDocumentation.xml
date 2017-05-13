@@ -191,12 +191,42 @@
                     <description locale="en"></description>
                 </descriptions>
             </topicDocumentation>
+            <topicDocumentation name="ACT19310848847575">
+                <labels>
+                    <label locale="en">Get Discount</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19310908349047">
+                <labels>
+                    <label locale="en">Has discount?</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="GTW19310932842324">
+                <labels>
+                    <label locale="en">gDisc</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19310953259240">
+                <labels>
+                    <label locale="en">Get cart total cost with discount</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
             <topicDocumentation name="sf30"/>
             <topicDocumentation name="sf31"/>
             <topicDocumentation name="sf33"/>
             <topicDocumentation name="sf34"/>
-            <topicDocumentation name="sf35"/>
-            <topicDocumentation name="sf36"/>
             <topicDocumentation name="sf40"/>
             <topicDocumentation name="sf42"/>
             <topicDocumentation name="sf43"/>
@@ -237,6 +267,17 @@
                 </descriptions>
             </topicDocumentation>
             <topicDocumentation name="sf62"/>
+            <topicDocumentation name="sf74"/>
+            <topicDocumentation name="sf75"/>
+            <topicDocumentation name="sf76"/>
+            <topicDocumentation name="sf78"/>
+            <topicDocumentation name="sf79"/>
+            <topicDocumentation name="sf81">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf83"/>
         </topicDocumentations>
     </component>
 </processDocumentation>

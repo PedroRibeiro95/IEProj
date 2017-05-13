@@ -34,7 +34,9 @@
          xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB"
          xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertItemDB"
          xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertItemDB"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns9="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB"
+         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/InsertCartDB">
 
     <import namespace="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart" location="ShoppingCart.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <!-- 
@@ -54,8 +56,8 @@
                  partnerRole="CheckRegisterProvider"/>
     <partnerLink name="CheckItemDB" partnerLinkType="ns5:CheckItemDB_plt"
                  partnerRole="CheckItemDB_role"/>
-    <partnerLink name="InsertItemDB" partnerLinkType="ns7:InsertItemDB_plt"
-                 partnerRole="InsertItemDB_role"/>
+    <partnerLink name="InsertCartDB" partnerLinkType="ns9:InsertCartDB_plt"
+                 partnerRole="InsertCartDB_role"/>
   </partnerLinks>
 
   <!-- 
@@ -78,8 +80,8 @@
               messageType="ns5:selectByPrimaryKey_inputParameters"/>
     <variable name="Invoke_CheckItem_selectByPrimaryKey_OutputVariable"
               messageType="ns5:StockCollection_msg"/>
-    <variable name="Invoke_InsertItemDB_insert_InputVariable"
-              messageType="ns7:CartCollection_msg"/>
+    <variable name="Invoke_InsertItemCart_InsertCartDB_InputVariable"
+              messageType="ns9:InsertCartDBInput_msg"/>
   </variables>
 
   <!-- 
@@ -134,21 +136,22 @@
             <assign name="Assign_ItemInformation">
               <copy>
                 <from>$inputVariable.payload/ns3:Userid</from>
-                <to>$Invoke_InsertItemDB_insert_InputVariable.CartCollection/ns8:Cart/ns8:userid</to>
+                <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:userid</to>
               </copy>
               <copy>
                 <from>$inputVariable.payload/ns3:Itemid</from>
-                <to>$Invoke_InsertItemDB_insert_InputVariable.CartCollection/ns8:Cart/ns8:itemid</to>
+                <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:itemid</to>
               </copy>
               <copy>
                 <from>$inputVariable.payload/ns3:Quantity</from>
-                <to>$Invoke_InsertItemDB_insert_InputVariable.CartCollection/ns8:Cart/ns8:quantity</to>
+                <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:quantity</to>
               </copy>
             </assign>
-            <invoke name="Invoke_InsertItemDB" bpelx:invokeAsDetail="yes"
-                    partnerLink="InsertItemDB" portType="ns7:InsertItemDB_ptt"
-                    operation="insert"
-                    inputVariable="Invoke_InsertItemDB_insert_InputVariable"/>
+            <invoke name="Invoke_InsertItemCart"
+                    partnerLink="InsertCartDB" portType="ns9:InsertCartDB_ptt"
+                    operation="InsertCartDB"
+                    inputVariable="Invoke_InsertItemCart_InsertCartDB_InputVariable"
+                    bpelx:invokeAsDetail="no"/>
             <assign name="Assign_OKResponse">
               <copy>
                 <from>"Item inserted in cart"</from>

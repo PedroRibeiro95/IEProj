@@ -18,7 +18,7 @@
             </ns1:member>
             <ns1:processRole id="Client" name="Client"/>
         </ns1:applicationRole>
-        <ns1:applicationRole id="AddMerchandiseCart.Formo" isProcessRole="true">
+        <ns1:applicationRole id="AddMerchandiseCart.Formo" isProcessRole="false">
             <ns5:name>AddMerchandiseCart.Formo</ns5:name>
             <ns1:member type="USER">
                 <ns1:name>jcooper</ns1:name>
@@ -31,6 +31,10 @@
                 <ns1:name>jcooper</ns1:name>
             </ns1:member>
             <ns1:processRole id="CustomerServiceRepresentative" name="CustomerServiceRepresentative"/>
+        </ns1:applicationRole>
+        <ns1:applicationRole id="AddMerchandiseCart.ServicesManager" isProcessRole="true">
+            <ns5:name>AddMerchandiseCart.ServicesManager</ns5:name>
+            <ns1:processRole id="ServicesManager" name="ServicesManager"/>
         </ns1:applicationRole>
     </ns1:applicationRoles>
     <ns1:applicationRoleOrgUnitCalendarAssociations/>

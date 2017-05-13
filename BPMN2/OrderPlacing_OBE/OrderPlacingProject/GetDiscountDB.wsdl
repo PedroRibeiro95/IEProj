@@ -1,0 +1,25 @@
+<?binding.jca GetDiscountDB_db.jca?>
+<wsdl:definitions name="GetDiscountDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetDiscountDB" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/GetDiscountDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/OrderPlacing_OBE/OrderPlacingProject/GetDiscountDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="GetDiscountDB_plt">
+        <plt:role name="GetDiscountDB_role">
+            <plt:portType name="tns:GetDiscountDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetDiscountDB" schemaLocation="xsd/GetDiscountDB.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="GetDiscountDBInput_msg">
+        <wsdl:part name="GetDiscountDBInput_msg" element="db:GetDiscountDBInput"/>
+    </wsdl:message>
+    <wsdl:message name="GetDiscountDBOutputCollection_msg">
+        <wsdl:part name="GetDiscountDBOutputCollection" element="db:GetDiscountDBOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetDiscountDB_ptt">
+        <wsdl:operation name="GetDiscountDB">
+            <wsdl:input message="tns:GetDiscountDBInput_msg"/>
+            <wsdl:output message="tns:GetDiscountDBOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

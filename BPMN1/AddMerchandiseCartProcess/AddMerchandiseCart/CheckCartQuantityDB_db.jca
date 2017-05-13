@@ -1,0 +1,13 @@
+<adapter-config name="CheckCartQuantityDB" adapter="Database Adapter" wsdlLocation="CheckCartQuantityDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="Connection_DB" adapterRef=""/>
+  <endpoint-interaction portType="CheckCartQuantityDB_ptt" operation="CheckCartQuantityDB">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="SELECT SUM(quantity) FROM cart WHERE userid=#userid"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+    <output/>
+  </endpoint-interaction>
+
+</adapter-config>

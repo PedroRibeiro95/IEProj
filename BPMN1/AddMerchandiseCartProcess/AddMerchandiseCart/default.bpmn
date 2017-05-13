@@ -159,5 +159,14 @@
                 </ns5:OracleExtensions>
             </extensionElements>
         </dataObject>
+        <dataObject name="Quantity" id="Quantity">
+            <extensionElements>
+                <ns5:OracleExtensions>
+                    <ns5:DataObjectType initialize="true">
+                        <ns5:TypeRef namespace="http://www.w3.org/2001/XMLSchema" type="decimal" isArray="false"/>
+                    </ns5:DataObjectType>
+                </ns5:OracleExtensions>
+            </extensionElements>
+        </dataObject>
     </process>
 </definitions>

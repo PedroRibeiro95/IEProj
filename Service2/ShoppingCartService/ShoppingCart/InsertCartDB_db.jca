@@ -1,0 +1,12 @@
+<adapter-config name="InsertCartDB" adapter="Database Adapter" wsdlLocation="InsertCartDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/DB/mydb" UIConnectionName="Connection_DB" adapterRef=""/>
+  <endpoint-interaction portType="InsertCartDB_ptt" operation="InsertCartDB">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="insert into cart (userid, itemid, quantity) values (#userid, #itemid, #quantity)"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+    <input/>
+  </endpoint-interaction>
+
+</adapter-config>
