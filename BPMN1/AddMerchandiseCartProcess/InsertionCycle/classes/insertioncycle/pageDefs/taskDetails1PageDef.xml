@@ -260,7 +260,8 @@
       </AttrNames>
     </attributeValues>
     <tree IterBinding="assigneesIterator" id="assignees">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType"
+                      Name="assignees0">
         <AttrNames>
           <Item Value="id"/>
           <Item Value="displayName"/>
@@ -290,7 +291,8 @@
       </AttrNames>
     </attributeValues>
     <tree IterBinding="userCommentIterator" id="userComment">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.commentType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.commentType"
+                      Name="userComment0">
         <AttrNames>
           <Item Value="comment"/>
           <Item Value="updatedDate"/>
@@ -309,7 +311,8 @@
           <Item Value="updatedBy"/>
         </Accessors>
       </nodeDefinition>
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType"
+                      Name="userComment1">
         <AttrNames>
           <Item Value="id"/>
           <Item Value="displayName"/>
@@ -333,7 +336,8 @@
       </AttrNames>
     </attributeValues>
     <tree IterBinding="updatedByIterator" id="updatedBy">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType"
+                      Name="updatedBy0">
         <AttrNames>
           <Item Value="id"/>
           <Item Value="displayName"/>
@@ -343,7 +347,8 @@
       </nodeDefinition>
     </tree>
     <tree IterBinding="attachmentIterator" id="attachment">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.attachmentType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.attachmentType"
+                      Name="attachment0">
         <AttrNames>
           <Item Value="content"/>
           <Item Value="mimeType"/>
@@ -374,7 +379,8 @@
           <Item Value="operation"/>
         </AttrNames>
       </nodeDefinition>
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType"
+                      Name="attachment1">
         <AttrNames>
           <Item Value="name"/>
           <Item Value="value"/>
@@ -456,7 +462,8 @@
     <action IterBinding="ucmMetadataItemIterator" id="Delete2"
             RequiresUpdateModel="false" Action="removeCurrentRow"/>
     <tree IterBinding="ucmMetadataItemIterator" id="ucmMetadataItem">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType"
+                      Name="ucmMetadataItem0">
         <AttrNames>
           <Item Value="name"/>
           <Item Value="value"/>
@@ -476,7 +483,8 @@
       </AttrNames>
     </attributeValues>
     <tree IterBinding="userCommentIterator" id="userComment1">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.commentType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.commentType"
+                      Name="userComment10">
         <AttrNames>
           <Item Value="comment"/>
           <Item Value="updatedDate"/>
@@ -495,7 +503,8 @@
           <Item Value="updatedBy"/>
         </Accessors>
       </nodeDefinition>
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType"
+                      Name="userComment11">
         <AttrNames>
           <Item Value="id"/>
           <Item Value="displayName"/>
@@ -505,7 +514,8 @@
       </nodeDefinition>
     </tree>
     <tree IterBinding="updatedByIterator" id="updatedBy2">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.identityType"
+                      Name="updatedBy20">
         <AttrNames>
           <Item Value="id"/>
           <Item Value="displayName"/>
@@ -515,7 +525,8 @@
       </nodeDefinition>
     </tree>
     <tree IterBinding="attachmentIterator" id="attachment1">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.attachmentType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.attachmentType"
+                      Name="attachment10">
         <AttrNames>
           <Item Value="content"/>
           <Item Value="mimeType"/>
@@ -546,7 +557,8 @@
           <Item Value="operation"/>
         </AttrNames>
       </nodeDefinition>
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType"
+                      Name="attachment11">
         <AttrNames>
           <Item Value="name"/>
           <Item Value="value"/>
@@ -555,7 +567,8 @@
       </nodeDefinition>
     </tree>
     <tree IterBinding="ucmMetadataItemIterator" id="ucmMetadataItem1">
-      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType">
+      <nodeDefinition DefName="InsertionCycle_InsertionCycle.ucmMetadataItemType"
+                      Name="ucmMetadataItem10">
         <AttrNames>
           <Item Value="name"/>
           <Item Value="value"/>

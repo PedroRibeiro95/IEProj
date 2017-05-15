@@ -1,15 +1,12 @@
 <adapter-config name="DeleteFromCartDB" adapter="Database Adapter" wsdlLocation="DeleteFromCartDB.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
   <connection-factory location="eis/DB/mydb" UIConnectionName="Connection_DB" adapterRef=""/>
-  <endpoint-interaction portType="DeleteFromCartDB_ptt" operation="delete">
-    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
-      <property name="DescriptorName" value="DeleteFromCartDB.Cart"/>
-      <property name="DmlType" value="delete"/>
-      <property name="DetectOmissions" value="true"/>
-      <property name="OptimizeMerge" value="true"/>
-      <property name="MappingsMetaDataURL" value="DeleteFromCartDB-or-mappings.xml"/>
+  <endpoint-interaction portType="DeleteFromCartDB_ptt" operation="DeleteFromCartDB">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="DELETE FROM cart WHERE userid = #userid AND itemid = #itemid"/>
       <property name="GetActiveUnitOfWork" value="false"/>
     </interaction-spec>
+    <input/>
   </endpoint-interaction>
 
 </adapter-config>

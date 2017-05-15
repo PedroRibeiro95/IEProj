@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<decisionServices xmlns="http://xmlns.oracle.com/bpel/rules" name="DiscountRule">
+    <ruleEngineProvider provider="Oracle_11.0.0.0.0" name="OracleRulesSDK">
+        <repository type="SCA-Archive">
+            <path>AddMerchandiseCart/oracle/rules/addmerchandisecart/DiscountRule.rules</path>
+        </repository>
+    </ruleEngineProvider>
+    <decisionService name="DiscountRule_DecisionService_1" ruleEngineProviderReference="OracleRulesSDK" targetNamespace="http://xmlns.oracle.com/DiscountRule/DiscountRule_DecisionService_1">
+        <catalog>DiscountRule</catalog>
+        <pattern name="CallFunctionStateless">
+            <arguments>
+                <call>addmerchandisecart.DiscountRule.DiscountRule_DecisionService_1</call>
+            </arguments>
+        </pattern>
+        <pattern name="CallFunctionStateful">
+            <arguments>
+                <call>addmerchandisecart.DiscountRule.DiscountRule_DecisionService_1</call>
+            </arguments>
+        </pattern>
+    </decisionService>
+</decisionServices>

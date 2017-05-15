@@ -112,6 +112,22 @@
                     <description locale="en"></description>
                 </descriptions>
             </topicDocumentation>
+            <topicDocumentation name="ACT19310848847575">
+                <labels>
+                    <label locale="en">Get Discount</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19310953259240">
+                <labels>
+                    <label locale="en">Get cart total cost with discount</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
             <topicDocumentation name="EVT19190121770289">
                 <labels>
                     <label locale="en">Order placed</label>
@@ -191,14 +207,6 @@
                     <description locale="en"></description>
                 </descriptions>
             </topicDocumentation>
-            <topicDocumentation name="ACT19310848847575">
-                <labels>
-                    <label locale="en">Get Discount</label>
-                </labels>
-                <descriptions>
-                    <description locale="en"></description>
-                </descriptions>
-            </topicDocumentation>
             <topicDocumentation name="GTW19310908349047">
                 <labels>
                     <label locale="en">Has discount?</label>
@@ -210,14 +218,6 @@
             <topicDocumentation name="GTW19310932842324">
                 <labels>
                     <label locale="en">gDisc</label>
-                </labels>
-                <descriptions>
-                    <description locale="en"></description>
-                </descriptions>
-            </topicDocumentation>
-            <topicDocumentation name="ACT19310953259240">
-                <labels>
-                    <label locale="en">Get cart total cost with discount</label>
                 </labels>
                 <descriptions>
                     <description locale="en"></description>

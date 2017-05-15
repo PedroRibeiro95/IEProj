@@ -143,6 +143,22 @@
                     <description locale="en"></description>
                 </descriptions>
             </topicDocumentation>
+            <topicDocumentation name="ACT19326023544665">
+                <labels>
+                    <label locale="en">Review Discount Applicability</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19326565944773">
+                <labels>
+                    <label locale="en">ServiceTask</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
             <topicDocumentation name="EVT19184689546981">
                 <labels>
                     <label locale="en">Start</label>
@@ -248,6 +264,8 @@
             <topicDocumentation name="sf42"/>
             <topicDocumentation name="sf43"/>
             <topicDocumentation name="sf45"/>
+            <topicDocumentation name="sf83"/>
+            <topicDocumentation name="sf84"/>
         </topicDocumentations>
     </component>
 </processDocumentation>

@@ -16,8 +16,6 @@
   <import namespace="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart"
           location="http://soabpm-vm.site:7001/soa-infra/services/default/ShoppingCart/ShoppingCart.wsdl"
           importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/DeleteFromCartDB"
-          location="DeleteFromCartDB.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/bpel/workflow/taskService"
           location="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl"
           importType="wsdl"/>
@@ -35,6 +33,10 @@
   <import namespace="http://sendsmsservice/"
           location="http://soabpm-vm.site:7001/SMSSender-SendSMSService-context-root/SendSMSServiceSoap12HttpPort?wsdl"
           importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/DiscountRule/DiscountRule_DecisionService_1"
+          location="DiscountRule_DecisionService_1.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/DeleteFromCartDB"
+          location="DeleteFromCartDB.wsdl" importType="wsdl"/>
   <property name="productVersion" type="xs:string" many="false">11.1.1.7.0</property>
   <component name="GetClientInfo">
     <implementation.workflow src="GetClientInfo.task"/>
@@ -53,6 +55,9 @@
   </component>
   <component name="InsertionCycle">
     <implementation.workflow src="InsertionCycle.task"/>
+  </component>
+  <component name="DiscountRule">
+    <implementation.decision src="DiscountRule.decs"/>
   </component>
   <reference name="RegisterClientService"
              ui:wsdlLocation="http://soabpm-vm.site:7001/soa-infra/services/default/RegisterClient/RegisterClient.wsdl">
@@ -73,17 +78,6 @@
       <property name="weblogic.wsee.wsat.transaction.flowOption"
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
-  </reference>
-  <reference name="DeleteFromCartDB" ui:wsdlLocation="DeleteFromCartDB.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/DeleteFromCartDB#wsdl.interface(DeleteFromCartDB_ptt)"/>
-    <binding.jca config="DeleteFromCartDB_db.jca"/>
-    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
-    <property name="jca.retry.interval" type="xs:int" many="false"
-              override="may">1</property>
-    <property name="jca.retry.backoff" type="xs:int" many="false"
-              override="may">2</property>
-    <property name="jca.retry.maxInterval" type="xs:string" many="false"
-              override="may">120</property>
   </reference>
   <reference name="GetItemPhotoDB" ui:wsdlLocation="GetItemPhotoDB.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/GetItemPhotoDB#wsdl.interface(GetItemPhotoDB_ptt)"/>
@@ -139,10 +133,17 @@
                 type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
-  <wire>
-    <source.uri>AddMerchandiseCartProcess/Services.Externals.DeleteFromCartDB.reference</source.uri>
-    <target.uri>DeleteFromCartDB</target.uri>
-  </wire>
+  <reference name="DeleteFromCartDB" ui:wsdlLocation="DeleteFromCartDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/AddMerchandiseCartProcess/AddMerchandiseCart/DeleteFromCartDB#wsdl.interface(DeleteFromCartDB_ptt)"/>
+    <binding.jca config="DeleteFromCartDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
   <wire>
     <source.uri>AddMerchandiseCartProcess/HumanTasks.ReviewQuantity.reference</source.uri>
     <target.uri>ReviewQuantity/TaskService</target.uri>
@@ -186,5 +187,13 @@
   <wire>
     <source.uri>AddMerchandiseCartProcess/HumanTasks.InsertionCycle.reference</source.uri>
     <target.uri>InsertionCycle/TaskService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Rules.Addmerchandisecart.DiscountRule.DiscountRule_DecisionService_1.reference</source.uri>
+    <target.uri>DiscountRule/DiscountRule_DecisionService_1</target.uri>
+  </wire>
+  <wire>
+    <source.uri>AddMerchandiseCartProcess/Services.Externals.DeleteFromCartDB.reference</source.uri>
+    <target.uri>DeleteFromCartDB</target.uri>
   </wire>
 </composite>

@@ -1,12 +1,12 @@
-Apr 30, 2017 8:11:06 AM oracle.mds
+May 15, 2017 7:06:25 AM oracle.mds
 NOTIFICATION: PManager instance is created without multitenancy support as JVM flag "oracle.multitenant.enabled" is not set to enable multitenancy support.
-Apr 30, 2017 8:11:10 AM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
+May 15, 2017 7:06:27 AM oracle.security.jps.internal.config.xml.XmlConfigurationFactory initDefaultConfiguration
 SEVERE: java.io.FileNotFoundException: ./config/jps-config.xml (No such file or directory)
-Apr 30, 2017 8:11:10 AM oracle.mds
+May 15, 2017 7:06:27 AM oracle.mds
 NOTIFICATION: Auditing is disabled for component MDS.
-Apr 30, 2017 8:11:12 AM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
+May 15, 2017 7:06:31 AM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
 INFO: XMLSchema incremental build enabled.
-Apr 30, 2017 8:11:37 AM oracle.bpel.services.common.ServicesLogger __logException
+May 15, 2017 7:06:57 AM oracle.bpel.services.common.ServicesLogger __logException
 SEVERE: <.> The XML-Schema file for the fact com.oracle.xmlns.bpm.bpmobject.orderplacingtypes.ruleoutputobject.ObjectFactory could not be found in the composite.
 The XML-Schema file xsd/RuleOutputObject.xsd could not be found in the composite. The XML fact com.oracle.xmlns.bpm.bpmobject.orderplacingtypes.ruleoutputobject.ObjectFactory of target namespace  assumes the existence of the schema file in the composite.
 Check the composite for the schema xsd/RuleOutputObject.xsd and make sure it has target namespace . The schema is expected in the project xsd or businessCatalog folder. If the error persists, contact Oracle Support Services.
@@ -33,7 +33,7 @@ Check the composite for the schema xsd/RuleOutputObject.xsd and make sure it has
 	at oracle.soa.scac.ValidateComposite.run0(ValidateComposite.java:206)
 	at oracle.soa.scac.ValidateComposite.run(ValidateComposite.java:187)
 	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:179)
-Apr 30, 2017 8:11:37 AM oracle.bpel.services.common.ServicesLogger __logException
+May 15, 2017 7:06:57 AM oracle.bpel.services.common.ServicesLogger __logException
 SEVERE: <.> The XML-Schema file for the fact com.oracle.xmlns.bpm.bpmobject.orderplacingtypes.ruleoutputobject.ObjectFactory could not be found in the composite.
 The XML-Schema file xsd/RuleOutputObject.xsd could not be found in the composite. The XML fact com.oracle.xmlns.bpm.bpmobject.orderplacingtypes.ruleoutputobject.ObjectFactory of target namespace  assumes the existence of the schema file in the composite.
 Check the composite for the schema xsd/RuleOutputObject.xsd and make sure it has target namespace . The schema is expected in the project xsd or businessCatalog folder. If the error persists, contact Oracle Support Services.
