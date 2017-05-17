@@ -1,1 +1,0 @@
-pedro@MacBook-Air-de-Pedro.local.2835

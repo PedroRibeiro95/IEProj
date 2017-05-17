@@ -8,6 +8,7 @@ id NUMBER(10),
 email VARCHAR(255), 
 password VARCHAR(255), 
 address VARCHAR(255), 
-phone_number VARCHAR(20), 
+phone_number VARCHAR(20),
+discount NUMBER(10),
 PRIMARY KEY(email) 
 );
