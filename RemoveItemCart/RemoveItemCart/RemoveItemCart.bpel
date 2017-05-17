@@ -1,0 +1,221 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed May 17 04:58:39 PDT 2017
+  Author:  oracle
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="RemoveItemCart"
+               targetNamespace="http://xmlns.oracle.com/RemoveItemCart/RemoveItemCart/RemoveItemCart"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/RemoveItemCart/RemoveItemCart/RemoveItemCart"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/CheckRegisteredService/CheckRegistered/CheckRegister"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/CheckItemDB"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/DeleteItemCart"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/UpdateStockDB"
+         xmlns:ns5="http://www.example.org"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/top/DeleteItemCart"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/GetStockDB"
+         xmlns:ns9="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetStockDB"
+         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/UpdateStockDB">
+
+    <import namespace="http://xmlns.oracle.com/RemoveItemCart/RemoveItemCart/RemoveItemCart" location="RemoveItemCart.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="removeitemcart_client" partnerLinkType="client:RemoveItemCart" myRole="RemoveItemCartProvider"/>
+    <partnerLink name="CheckRegisteredService"
+                 partnerLinkType="ns1:CheckRegister"
+                 partnerRole="CheckRegisterProvider"/>
+    <partnerLink name="CheckItemDB" partnerLinkType="ns2:CheckItemDB_plt"
+                 partnerRole="CheckItemDB_role"/>
+    <partnerLink name="DeleteItemCart" partnerLinkType="ns3:DeleteItemCart_plt"
+                 partnerRole="DeleteItemCart_role"/>
+    <partnerLink name="UpdateStockDB" partnerLinkType="ns4:UpdateStockDB_plt"
+                 partnerRole="UpdateStockDB_role"/>
+    <partnerLink name="GetStockDB" partnerLinkType="ns8:GetStockDB_plt"
+                 partnerRole="GetStockDB_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:RemoveItemCartRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:RemoveItemCartResponseMessage"/>
+    <variable name="Invoke_CheckRegistered_process_InputVariable"
+              messageType="ns1:CheckRegisterRequestMessage"/>
+    <variable name="Invoke_CheckRegistered_process_OutputVariable"
+              messageType="ns1:CheckRegisterResponseMessage"/>
+    <variable name="Invoke_CheckItemDB_selectByPrimaryKey_InputVariable"
+              messageType="ns2:selectByPrimaryKey_inputParameters"/>
+    <variable name="Invoke_CheckItemDB_selectByPrimaryKey_OutputVariable"
+              messageType="ns2:CartCollection_msg"/>
+    <variable name="Invoke_DeleteItemCart_delete_InputVariable"
+              messageType="ns3:CartCollection_msg"/>
+    <variable name="Invoke_GetStockDB_selectByPrimaryKey_InputVariable"
+              messageType="ns8:selectByPrimaryKey_inputParameters"/>
+    <variable name="Invoke_GetStockDB_selectByPrimaryKey_OutputVariable"
+              messageType="ns8:StockCollection_msg"/>
+    <variable name="Invoke_UpdateStockDB_UpdateStockDB_InputVariable"
+              messageType="ns4:UpdateStockDBInput_msg"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in RemoveItemCart.wsdl) -->
+    <receive name="receiveInput" partnerLink="removeitemcart_client" portType="client:RemoveItemCart" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Assign_ClientInfo">
+      <copy>
+        <from>$inputVariable.payload/ns5:userid</from>
+        <to>$Invoke_CheckRegistered_process_InputVariable.payload/ns5:Id</to>
+      </copy>
+      <copy>
+        <from>$inputVariable.payload/ns5:password</from>
+        <to>$Invoke_CheckRegistered_process_InputVariable.payload/ns5:Password</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke_CheckRegistered" bpelx:invokeAsDetail="no"
+            partnerLink="CheckRegisteredService" portType="ns1:CheckRegister"
+            operation="process"
+            inputVariable="Invoke_CheckRegistered_process_InputVariable"
+            outputVariable="Invoke_CheckRegistered_process_OutputVariable"/>
+    <if name="If_Registered">
+      <documentation>
+        <![CDATA[Registered]]>
+      </documentation>
+      <condition>$Invoke_CheckRegistered_process_OutputVariable.payload/ns5:IsRegistered = "true"</condition>
+      <sequence name="Sequence1">
+        <assign name="Assign_ItemInfo">
+          <copy>
+            <from>$inputVariable.payload/ns5:itemid</from>
+            <to>$Invoke_CheckItemDB_selectByPrimaryKey_InputVariable.selectByPrimaryKey_inputParameters/ns6:itemid</to>
+          </copy>
+          <copy>
+            <from>$inputVariable.payload/ns5:userid</from>
+            <to>$Invoke_CheckItemDB_selectByPrimaryKey_InputVariable.selectByPrimaryKey_inputParameters/ns6:userid</to>
+          </copy>
+        </assign>
+        <invoke name="Invoke_CheckItemDB" bpelx:invokeAsDetail="no"
+                partnerLink="CheckItemDB" portType="ns2:CheckItemDB_ptt"
+                operation="selectByPrimaryKey"
+                inputVariable="Invoke_CheckItemDB_selectByPrimaryKey_InputVariable"
+                outputVariable="Invoke_CheckItemDB_selectByPrimaryKey_OutputVariable"/>
+        <if name="If_ItemExists">
+          <documentation>
+            <![CDATA[Item exists]]>
+          </documentation>
+          <condition>$Invoke_CheckItemDB_selectByPrimaryKey_OutputVariable.CartCollection/ns6:Cart/ns6:itemid != ""</condition>
+          <sequence name="Sequence2">
+            <assign name="Assign_ItemDelete">
+              <copy>
+                <from>$inputVariable.payload/ns5:userid</from>
+                <to>$Invoke_DeleteItemCart_delete_InputVariable.CartCollection/ns7:Cart/ns7:userid</to>
+              </copy>
+              <copy>
+                <from>$inputVariable.payload/ns5:itemid</from>
+                <to>$Invoke_DeleteItemCart_delete_InputVariable.CartCollection/ns7:Cart/ns7:itemid</to>
+              </copy>
+            </assign>
+            <invoke name="Invoke_DeleteItemCart" bpelx:invokeAsDetail="no"
+                    partnerLink="DeleteItemCart"
+                    portType="ns3:DeleteItemCart_ptt" operation="delete"
+                    inputVariable="Invoke_DeleteItemCart_delete_InputVariable"/>
+            <assign name="Assign_GetStock">
+              <copy>
+                <from>$inputVariable.payload/ns5:itemid</from>
+                <to>$Invoke_GetStockDB_selectByPrimaryKey_InputVariable.selectByPrimaryKey_inputParameters/ns9:itemid</to>
+              </copy>
+            </assign>
+            <invoke name="Invoke_GetStockDB"
+                    partnerLink="GetStockDB" portType="ns8:GetStockDB_ptt"
+                    operation="selectByPrimaryKey"
+                    inputVariable="Invoke_GetStockDB_selectByPrimaryKey_InputVariable"
+                    outputVariable="Invoke_GetStockDB_selectByPrimaryKey_OutputVariable"
+                    bpelx:invokeAsDetail="no"/>
+            <assign name="Assign_UpdateStock">
+              <copy>
+                <from>$inputVariable.payload/ns5:itemid</from>
+                <to>$Invoke_UpdateStockDB_UpdateStockDB_InputVariable.UpdateStockDBInput_msg/ns10:itemid</to>
+              </copy>
+              <copy>
+                <from>$Invoke_GetStockDB_selectByPrimaryKey_OutputVariable.StockCollection/ns9:Stock/ns9:quantity + $Invoke_CheckItemDB_selectByPrimaryKey_OutputVariable.CartCollection/ns6:Cart/ns6:quantity</from>
+                <to>$Invoke_UpdateStockDB_UpdateStockDB_InputVariable.UpdateStockDBInput_msg/ns10:quantity</to>
+              </copy>
+            </assign>
+            <invoke name="Invoke_UpdateStockDB"
+                    partnerLink="UpdateStockDB"
+                    portType="ns4:UpdateStockDB_ptt" operation="UpdateStockDB"
+                    inputVariable="Invoke_UpdateStockDB_UpdateStockDB_InputVariable"
+                    bpelx:invokeAsDetail="no"/>
+          </sequence>
+          <else>
+            <documentation>
+              <![CDATA[Doesn't exist]]>
+            </documentation>
+            <assign name="Assign_DoesntExist">
+              <copy>
+                <from>concat("NOITM", "")</from>
+                <to>$outputVariable.payload/ns5:response</to>
+              </copy>
+            </assign>
+          </else>
+        </if>
+      </sequence>
+      <else>
+        <documentation>
+          <![CDATA[Not registered]]>
+        </documentation>
+        <assign name="Assign_NotRegistered">
+          <copy>
+            <from>concat("NOTRGST", "")</from>
+            <to>$outputVariable.payload/ns5:response</to>
+          </copy>
+        </assign>
+      </else>
+    </if>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="removeitemcart_client" portType="client:RemoveItemCart" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

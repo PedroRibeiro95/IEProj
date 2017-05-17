@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="CartCollection" type="CartCollection"/>
+   <xs:complexType name="CartCollection">
+      <xs:sequence>
+         <xs:element name="Cart" type="Cart" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Cart">
+      <xs:sequence>
+         <xs:element name="userid" type="xs:long"/>
+         <xs:element name="itemid" type="xs:long"/>
+         <xs:element name="quantity" type="xs:long" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="CartPrimaryKey" type="CartPrimaryKey"/>
+   <xs:complexType name="CartPrimaryKey">
+      <xs:sequence>
+         <xs:element name="itemid" type="xs:long" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="userid" type="xs:long" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

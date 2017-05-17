@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DeleteItemCart" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/DeleteItemCart" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="CartCollection" type="CartCollection"/>
+   <xs:complexType name="CartCollection">
+      <xs:sequence>
+         <xs:element name="Cart" type="Cart" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Cart">
+      <xs:sequence>
+         <xs:element name="userid" type="xs:long"/>
+         <xs:element name="itemid" type="xs:long"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

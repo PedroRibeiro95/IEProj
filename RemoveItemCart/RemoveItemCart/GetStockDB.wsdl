@@ -1,0 +1,25 @@
+<?binding.jca GetStockDB_db.jca?>
+<wsdl:definitions name="GetStockDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/GetStockDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/GetStockDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetStockDB">
+    <plt:partnerLinkType name="GetStockDB_plt">
+        <plt:role name="GetStockDB_role">
+            <plt:portType name="tns:GetStockDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetStockDB" schemaLocation="xsd/GetStockDB_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="selectByPrimaryKey_inputParameters">
+        <wsdl:part name="selectByPrimaryKey_inputParameters" element="top:StockPrimaryKey"/>
+    </wsdl:message>
+    <wsdl:message name="StockCollection_msg">
+        <wsdl:part name="StockCollection" element="top:StockCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetStockDB_ptt">
+        <wsdl:operation name="selectByPrimaryKey">
+            <wsdl:input message="tns:selectByPrimaryKey_inputParameters"/>
+            <wsdl:output message="tns:StockCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

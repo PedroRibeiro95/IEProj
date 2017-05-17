@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://www.example.org"
+            targetNamespace="http://www.example.org"
+            elementFormDefault="qualified">
+  <xsd:complexType name="RequestRemoveType">
+    <xsd:sequence>
+      <xsd:element name="userid" type="xsd:integer"/>
+      <xsd:element name="password" type="xsd:string"/>
+      <xsd:element name="itemid" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseRemoveType">
+    <xsd:sequence>
+      <xsd:element name="response" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RequestRemove" type="tns:RequestRemoveType"/>
+  <xsd:element name="ResponseRemove" type="tns:ResponseRemoveType"/>
+</xsd:schema>

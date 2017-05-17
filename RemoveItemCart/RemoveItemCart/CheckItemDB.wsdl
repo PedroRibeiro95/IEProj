@@ -1,0 +1,25 @@
+<?binding.jca CheckItemDB_db.jca?>
+<wsdl:definitions name="CheckItemDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/CheckItemDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/RemoveItemCart/RemoveItemCart/CheckItemDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB">
+    <plt:partnerLinkType name="CheckItemDB_plt">
+        <plt:role name="CheckItemDB_role">
+            <plt:portType name="tns:CheckItemDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/CheckItemDB" schemaLocation="xsd/CheckItemDB_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="selectByPrimaryKey_inputParameters">
+        <wsdl:part name="selectByPrimaryKey_inputParameters" element="top:CartPrimaryKey"/>
+    </wsdl:message>
+    <wsdl:message name="CartCollection_msg">
+        <wsdl:part name="CartCollection" element="top:CartCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="CheckItemDB_ptt">
+        <wsdl:operation name="selectByPrimaryKey">
+            <wsdl:input message="tns:selectByPrimaryKey_inputParameters"/>
+            <wsdl:output message="tns:CartCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

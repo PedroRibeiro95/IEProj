@@ -13,6 +13,171 @@
       <value n="oracle.mds.internal.dt.ide.migrator.MDSConfigMigratorHelper" v="11.1.1.0.5313"/>
    </hash>
    <list n="listOfChildren">
+      <hash><url n="URL" path="../../RemoveItemCartProcess/GetRemoveItem_UI/GetRemoveItem_UI.jpr"/></hash>
+      <hash><url n="URL" path="GetRegisterInfo_UI/GetRegisterInfo_UI.jpr"/></hash>
+      <hash><url n="URL" path="GetRemoveInfo_UI/GetRemoveInfo_UI.jpr"/></hash>
       <hash><url n="URL" path="ShoppingCart/ShoppingCart.jpr"/></hash>
    </list>
+   <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
+      <hash n="profileDefinitions">
+         <hash n="GetRegisterInfo_UI">
+            <hash n="archiveOptions">
+               <value n="hasManifest" v="false"/>
+            </hash>
+            <hash n="dependencies">
+               <list n="dependencyList">
+                  <hash>
+                     <value n="adapterClass" v="oracle.jdevimpl.deploy.common.DefaultProfileDependable"/>
+                     <url n="ownerURL" path="GetRegisterInfo_UI/GetRegisterInfo_UI.jpr"/>
+                     <value n="profileName" v="GetRegisterInfo_UI"/>
+                  </hash>
+               </list>
+            </hash>
+            <url n="earURL" path="deploy/GetRegisterInfo_UI.ear"/>
+            <value n="enterpriseAppName" v="GetRegisterInfo_UI"/>
+            <hash n="fileGroups">
+               <list n="groups">
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="9"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="Application Descriptors"/>
+                     <hash n="filters">
+                        <list n="rules"/>
+                     </hash>
+                     <value n="internalName" v="ear-metainf"/>
+                     <value n="type" v="1"/>
+                  </hash>
+                  <hash>
+                     <value n="displayName" v="Application Libraries"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="libraries"/>
+                     <value n="targetWithinJar" v="lib"/>
+                     <value n="type" v="3"/>
+                  </hash>
+               </list>
+            </hash>
+            <hash n="libraryDependencies">
+               <value n="IncludeLibrariesFromOtherContainers" v="true"/>
+            </hash>
+            <value n="profileClass" v="oracle.jdeveloper.deploy.ear.EarProfile"/>
+            <value n="profileName" v="GetRegisterInfo_UI"/>
+         </hash>
+         <hash n="GetRemoveInfo_UI">
+            <hash n="archiveOptions">
+               <value n="hasManifest" v="false"/>
+            </hash>
+            <hash n="dependencies">
+               <list n="dependencyList">
+                  <hash>
+                     <value n="adapterClass" v="oracle.jdevimpl.deploy.common.DefaultProfileDependable"/>
+                     <url n="ownerURL" path="GetRemoveInfo_UI/GetRemoveInfo_UI.jpr"/>
+                     <value n="profileName" v="GetRemoveInfo_UI"/>
+                  </hash>
+               </list>
+            </hash>
+            <url n="earURL" path="deploy/GetRemoveInfo_UI.ear"/>
+            <value n="enterpriseAppName" v="GetRemoveInfo_UI"/>
+            <hash n="fileGroups">
+               <list n="groups">
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="9"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="Application Descriptors"/>
+                     <hash n="filters">
+                        <list n="rules"/>
+                     </hash>
+                     <value n="internalName" v="ear-metainf"/>
+                     <value n="type" v="1"/>
+                  </hash>
+                  <hash>
+                     <value n="displayName" v="Application Libraries"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="libraries"/>
+                     <value n="targetWithinJar" v="lib"/>
+                     <value n="type" v="3"/>
+                  </hash>
+               </list>
+            </hash>
+            <hash n="libraryDependencies">
+               <value n="IncludeLibrariesFromOtherContainers" v="true"/>
+            </hash>
+            <value n="profileClass" v="oracle.jdeveloper.deploy.ear.EarProfile"/>
+            <value n="profileName" v="GetRemoveInfo_UI"/>
+         </hash>
+         <hash n="GetRemoveItem_UI">
+            <hash n="archiveOptions">
+               <value n="hasManifest" v="false"/>
+            </hash>
+            <hash n="dependencies">
+               <list n="dependencyList">
+                  <hash>
+                     <value n="adapterClass" v="oracle.jdevimpl.deploy.common.DefaultProfileDependable"/>
+                     <url n="ownerURL" path="../../RemoveItemCartProcess/GetRemoveItem_UI/GetRemoveItem_UI.jpr"/>
+                     <value n="profileName" v="GetRemoveItem_UI"/>
+                  </hash>
+               </list>
+            </hash>
+            <url n="earURL" path="deploy/GetRemoveItem_UI.ear"/>
+            <value n="enterpriseAppName" v="GetRemoveItem_UI"/>
+            <hash n="fileGroups">
+               <list n="groups">
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="9"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="Application Descriptors"/>
+                     <hash n="filters">
+                        <list n="rules"/>
+                     </hash>
+                     <value n="internalName" v="ear-metainf"/>
+                     <value n="type" v="1"/>
+                  </hash>
+                  <hash>
+                     <value n="displayName" v="Application Libraries"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="libraries"/>
+                     <value n="targetWithinJar" v="lib"/>
+                     <value n="type" v="3"/>
+                  </hash>
+               </list>
+            </hash>
+            <hash n="libraryDependencies">
+               <value n="IncludeLibrariesFromOtherContainers" v="true"/>
+            </hash>
+            <value n="profileClass" v="oracle.jdeveloper.deploy.ear.EarProfile"/>
+            <value n="profileName" v="GetRemoveItem_UI"/>
+         </hash>
+      </hash>
+      <list n="profileList">
+         <string v="GetRegisterInfo_UI"/>
+         <string v="GetRemoveInfo_UI"/>
+         <string v="GetRemoveItem_UI"/>
+      </list>
+   </hash>
 </jws:workspace>
