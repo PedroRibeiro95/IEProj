@@ -1,0 +1,21 @@
+<?binding.jca UpdateStockDB_db.jca?>
+<wsdl:definitions name="UpdateStockDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/UpdateStockDB" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/UpdateStockDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/UpdateStockDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="UpdateStockDB_plt">
+        <plt:role name="UpdateStockDB_role">
+            <plt:portType name="tns:UpdateStockDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/UpdateStockDB" schemaLocation="xsd/UpdateStockDB.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="UpdateStockDBInput_msg">
+        <wsdl:part name="UpdateStockDBInput_msg" element="db:UpdateStockDBInput"/>
+    </wsdl:message>
+    <wsdl:portType name="UpdateStockDB_ptt">
+        <wsdl:operation name="UpdateStockDB">
+            <wsdl:input message="tns:UpdateStockDBInput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

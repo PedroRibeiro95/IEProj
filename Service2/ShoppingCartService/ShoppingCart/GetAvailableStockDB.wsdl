@@ -1,0 +1,25 @@
+<?binding.jca GetAvailableStockDB_db.jca?>
+<wsdl:definitions name="GetAvailableStockDB" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/GetAvailableStockDB" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/GetAvailableStockDB" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/GetAvailableStockDB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="GetAvailableStockDB_plt">
+        <plt:role name="GetAvailableStockDB_role">
+            <plt:portType name="tns:GetAvailableStockDB_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetAvailableStockDB" schemaLocation="xsd/GetAvailableStockDB.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="GetAvailableStockDBInput_msg">
+        <wsdl:part name="GetAvailableStockDBInput_msg" element="db:GetAvailableStockDBInput"/>
+    </wsdl:message>
+    <wsdl:message name="GetAvailableStockDBOutputCollection_msg">
+        <wsdl:part name="GetAvailableStockDBOutputCollection" element="db:GetAvailableStockDBOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetAvailableStockDB_ptt">
+        <wsdl:operation name="GetAvailableStockDB">
+            <wsdl:input message="tns:GetAvailableStockDBInput_msg"/>
+            <wsdl:output message="tns:GetAvailableStockDBOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

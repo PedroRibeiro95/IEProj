@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetAvailableStockDB" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/GetAvailableStockDB" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="GetAvailableStockDBInput" type="GetAvailableStockDBInput"/>
+   <xs:complexType name="GetAvailableStockDBInput">
+      <xs:sequence>
+         <xs:element name="itemid" type="xs:decimal" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="GetAvailableStockDBOutputCollection" type="GetAvailableStockDBOutputCollection"/>
+   <xs:complexType name="GetAvailableStockDBOutputCollection">
+      <xs:sequence>
+         <xs:element name="GetAvailableStockDBOutput" type="GetAvailableStockDBOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="GetAvailableStockDBOutput">
+      <xs:sequence>
+         <xs:element name="quantity" type="xs:decimal" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -153,7 +153,7 @@
             </topicDocumentation>
             <topicDocumentation name="ACT19326565944773">
                 <labels>
-                    <label locale="en">ServiceTask</label>
+                    <label locale="en">Inform client of reject insertion</label>
                 </labels>
                 <descriptions>
                     <description locale="en"></description>
@@ -225,6 +225,22 @@
                     <description locale="en"></description>
                 </descriptions>
             </topicDocumentation>
+            <topicDocumentation name="GTW19338790147685">
+                <labels>
+                    <label locale="en">Enough stock?</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ACT19338815468298">
+                <labels>
+                    <label locale="en">Inform Client of low stock</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
             <topicDocumentation name="sf4"/>
             <topicDocumentation name="sf10"/>
             <topicDocumentation name="sf14"/>
@@ -266,6 +282,13 @@
             <topicDocumentation name="sf45"/>
             <topicDocumentation name="sf83"/>
             <topicDocumentation name="sf84"/>
+            <topicDocumentation name="sf85"/>
+            <topicDocumentation name="sf91">
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf93"/>
         </topicDocumentations>
     </component>
 </processDocumentation>

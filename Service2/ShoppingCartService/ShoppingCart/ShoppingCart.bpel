@@ -36,7 +36,13 @@
          xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertItemDB"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns:ns9="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB"
-         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/InsertCartDB">
+         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/InsertCartDB"
+         xmlns:ns11="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/GetAvailableStockDB"
+         xmlns:ns12="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/UpdateStockDB"
+         xmlns:ns13="http://xmlns.oracle.com/pcbpel/adapter/db/GetAvailableStockDB"
+         xmlns:ns14="http://xmlns.oracle.com/pcbpel/adapter/db/UpdateStockDB"
+         xmlns:ns15="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/GetStockDB"
+         xmlns:ns16="http://xmlns.oracle.com/pcbpel/adapter/db/top/GetStockDB">
 
     <import namespace="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart" location="ShoppingCart.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <!-- 
@@ -58,6 +64,10 @@
                  partnerRole="CheckItemDB_role"/>
     <partnerLink name="InsertCartDB" partnerLinkType="ns9:InsertCartDB_plt"
                  partnerRole="InsertCartDB_role"/>
+    <partnerLink name="UpdateStockDB" partnerLinkType="ns12:UpdateStockDB_plt"
+                 partnerRole="UpdateStockDB_role"/>
+    <partnerLink name="GetStockDB" partnerLinkType="ns15:GetStockDB_plt"
+                 partnerRole="GetStockDB_role"/>
   </partnerLinks>
 
   <!-- 
@@ -82,6 +92,12 @@
               messageType="ns5:StockCollection_msg"/>
     <variable name="Invoke_InsertItemCart_InsertCartDB_InputVariable"
               messageType="ns9:InsertCartDBInput_msg"/>
+    <variable name="Invoke_UpdateStock_UpdateStockDB_InputVariable"
+              messageType="ns12:UpdateStockDBInput_msg"/>
+    <variable name="Invoke_GetAvailableStock_selectByPrimaryKey_InputVariable"
+              messageType="ns15:selectByPrimaryKey_inputParameters"/>
+    <variable name="Invoke_GetAvailableStock_selectByPrimaryKey_OutputVariable"
+              messageType="ns15:StockCollection_msg"/>
   </variables>
 
   <!-- 
@@ -133,31 +149,77 @@
           </documentation>
           <condition>$Invoke_CheckItem_selectByPrimaryKey_OutputVariable.StockCollection/ns6:Stock/ns6:itemid != ""</condition>
           <sequence>
-            <assign name="Assign_ItemInformation">
-              <copy>
-                <from>$inputVariable.payload/ns3:Userid</from>
-                <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:userid</to>
-              </copy>
+            <assign name="Assign_Itemid">
               <copy>
                 <from>$inputVariable.payload/ns3:Itemid</from>
-                <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:itemid</to>
-              </copy>
-              <copy>
-                <from>$inputVariable.payload/ns3:Quantity</from>
-                <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:quantity</to>
+                <to>$Invoke_GetAvailableStock_selectByPrimaryKey_InputVariable.selectByPrimaryKey_inputParameters/ns16:itemid</to>
               </copy>
             </assign>
-            <invoke name="Invoke_InsertItemCart"
-                    partnerLink="InsertCartDB" portType="ns9:InsertCartDB_ptt"
-                    operation="InsertCartDB"
-                    inputVariable="Invoke_InsertItemCart_InsertCartDB_InputVariable"
+            <invoke name="Invoke_GetAvailableStock"
+                    partnerLink="GetStockDB"
+                    portType="ns15:GetStockDB_ptt"
+                    operation="selectByPrimaryKey"
+                    inputVariable="Invoke_GetAvailableStock_selectByPrimaryKey_InputVariable"
+                    outputVariable="Invoke_GetAvailableStock_selectByPrimaryKey_OutputVariable"
                     bpelx:invokeAsDetail="no"/>
-            <assign name="Assign_OKResponse">
-              <copy>
-                <from>"Item inserted in cart"</from>
-                <to>$outputVariable.payload/ns3:Response</to>
-              </copy>
-            </assign>
+            <if name="If_EnoughStock">
+              <documentation>
+                <![CDATA[Enough stock]]>
+              </documentation>
+              <condition>$Invoke_GetAvailableStock_selectByPrimaryKey_OutputVariable.StockCollection/ns16:Stock/ns16:quantity &gt; 0</condition>
+              <sequence>
+                <assign name="Assign_ItemInformation">
+                  <copy>
+                    <from>$inputVariable.payload/ns3:Userid</from>
+                    <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:userid</to>
+                  </copy>
+                  <copy>
+                    <from>$inputVariable.payload/ns3:Itemid</from>
+                    <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:itemid</to>
+                  </copy>
+                  <copy>
+                    <from>$inputVariable.payload/ns3:Quantity</from>
+                    <to>$Invoke_InsertItemCart_InsertCartDB_InputVariable.InsertCartDBInput_msg/ns10:quantity</to>
+                  </copy>
+                </assign>
+                <invoke name="Invoke_InsertItemCart" partnerLink="InsertCartDB"
+                        portType="ns9:InsertCartDB_ptt" operation="InsertCartDB"
+                        inputVariable="Invoke_InsertItemCart_InsertCartDB_InputVariable"
+                        bpelx:invokeAsDetail="no"/>
+                <assign name="Assign_Quantity">
+                  <copy>
+                    <from>$inputVariable.payload/ns3:Itemid</from>
+                    <to>$Invoke_UpdateStock_UpdateStockDB_InputVariable.UpdateStockDBInput_msg/ns14:itemid</to>
+                  </copy>
+                  <copy>
+                    <from>$Invoke_GetAvailableStock_selectByPrimaryKey_OutputVariable.StockCollection/ns16:Stock/ns16:quantity - $inputVariable.payload/ns3:Quantity</from>
+                    <to>$Invoke_UpdateStock_UpdateStockDB_InputVariable.UpdateStockDBInput_msg/ns14:quantity</to>
+                  </copy>
+                </assign>
+                <invoke name="Invoke_UpdateStock" bpelx:invokeAsDetail="no"
+                        partnerLink="UpdateStockDB"
+                        portType="ns12:UpdateStockDB_ptt"
+                        operation="UpdateStockDB"
+                        inputVariable="Invoke_UpdateStock_UpdateStockDB_InputVariable"/>
+                <assign name="Assign_OKResponse">
+                  <copy>
+                    <from>"Item inserted in cart"</from>
+                    <to>$outputVariable.payload/ns3:Response</to>
+                  </copy>
+                </assign>
+              </sequence>
+              <else>
+                <documentation>
+                  <![CDATA[Not enough stock]]>
+                </documentation>
+                <assign name="Assign_NotEnoughStock">
+                  <copy>
+                    <from>concat("NOSTK", "")</from>
+                    <to>$outputVariable.payload/ns3:Response</to>
+                  </copy>
+                </assign>
+              </else>
+            </if>
           </sequence>
           <else>
             <documentation>

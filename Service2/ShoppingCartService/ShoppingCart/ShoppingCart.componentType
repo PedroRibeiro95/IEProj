@@ -17,4 +17,10 @@
   <reference name="InsertCartDB" ui:wsdlLocation="InsertCartDB.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB#wsdl.interface(InsertCartDB_ptt)"/>
   </reference>
+  <reference name="UpdateStockDB" ui:wsdlLocation="UpdateStockDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/UpdateStockDB#wsdl.interface(UpdateStockDB_ptt)"/>
+  </reference>
+  <reference name="GetStockDB" ui:wsdlLocation="GetStockDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/GetStockDB#wsdl.interface(GetStockDB_ptt)"/>
+  </reference>
 </componentType>

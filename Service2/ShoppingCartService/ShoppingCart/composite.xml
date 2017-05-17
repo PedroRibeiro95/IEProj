@@ -19,6 +19,10 @@
           location="CheckItemDB.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/InsertCartDB"
           location="InsertCartDB.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/UpdateStockDB"
+          location="UpdateStockDB.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/GetStockDB"
+          location="GetStockDB.wsdl" importType="wsdl"/>
   <service name="shoppingcart_client_ep" ui:wsdlLocation="ShoppingCart.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.interface(ShoppingCart)"/>
     <binding.ws port="http://xmlns.oracle.com/ShoppingCartService/ShoppingCart/ShoppingCart#wsdl.endpoint(shoppingcart_client_ep/ShoppingCart_pt)"/>
@@ -62,6 +66,28 @@
     <property name="jca.retry.maxInterval" type="xs:string" many="false"
               override="may">120</property>
   </reference>
+  <reference name="UpdateStockDB" ui:wsdlLocation="UpdateStockDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/UpdateStockDB#wsdl.interface(UpdateStockDB_ptt)"/>
+    <binding.jca config="UpdateStockDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
+  <reference name="GetStockDB" ui:wsdlLocation="GetStockDB.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ShoppingCartService/ShoppingCart/GetStockDB#wsdl.interface(GetStockDB_ptt)"/>
+    <binding.jca config="GetStockDB_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false"
+              override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false"
+              override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:string" many="false"
+              override="may">120</property>
+  </reference>
   <wire>
     <source.uri>shoppingcart_client_ep</source.uri>
     <target.uri>ShoppingCart/shoppingcart_client</target.uri>
@@ -77,5 +103,13 @@
   <wire>
     <source.uri>ShoppingCart/InsertCartDB</source.uri>
     <target.uri>InsertCartDB</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ShoppingCart/UpdateStockDB</source.uri>
+    <target.uri>UpdateStockDB</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ShoppingCart/GetStockDB</source.uri>
+    <target.uri>GetStockDB</target.uri>
   </wire>
 </composite>
